@@ -28,7 +28,7 @@
       <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
           <li>
-            <a href="">
+            <a href="{{ route('dashboard') }}">
               <i class="now-ui-icons design_palette"></i>
               <p>Dashboard</p>
             </a>
@@ -70,7 +70,7 @@
             </a>
           </li>
           <li class="active-pro">
-            <a href="">
+            <a href="{{ route('logout') }}">
               <i class="now-ui-icons media-1_button-power"></i>
               <p>Logout</p>
             </a>
@@ -78,22 +78,9 @@
         </ul>
       </div>
     </div>
-    <div class="main-panel" id="main-panel">
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
-        <div class="container-fluid">
-          <div class="navbar-wrapper">
-            <div class="navbar-toggle">
-              <button type="button" class="navbar-toggler">
-                <span class="navbar-toggler-bar bar1"></span>
-                <span class="navbar-toggler-bar bar2"></span>
-                <span class="navbar-toggler-bar bar3"></span>
-              </button>
-            </div>
-            <a class="navbar-brand bg-dark px-4" href="#pablo">Dashboard</a>
-          </div>
-           </nav>
-      <!-- End Navbar -->
+    <div class="main-panel px-2" id="main-panel">
+      @yield('content')
+      
       <!--   Core JS Files   -->
   <script src="../assets/js/core/jquery.min.js"></script>
   <script src="../assets/js/core/popper.min.js"></script>

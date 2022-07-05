@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.admin')
+
+@section('content')
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 
     <style>
         * {
@@ -78,16 +74,6 @@
 <body>
     <input type="search" name="" class = "w-25 bg-light" id="" placeholder="Search ">
     <br>
-
-    <br>
-    <a href="{{route('room.index')}}">Rooms</a>
-    <br>
-    <a href="{{route('course.index')}}">Cources</a>
-    <br>
-    <a href="{{route('professor.index')}}">Professors</a>
-    <br>
-    <a href="{{ route('period.index')}}">Periods</a>
-    <br>
     {{-- <a href="{{ route('period.create')}}">Add new Time Slot</a> --}}
 
     <div class="openBtn">
@@ -118,20 +104,11 @@
           </form>
         </div>
       </div>
-  
-  
-  
       <br>
       <br>
       <br>
       <br>
-  
-  
-  
-  
-  
-  
-      <script>
+  <script>
         function openForm() {
           document.getElementById("popupForm").style.display = "block";
         }
@@ -175,6 +152,5 @@
     </table>
     {{-- {!! $teachers->links() !!} --}}
 
-    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>
+@endsection
