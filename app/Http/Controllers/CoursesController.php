@@ -18,7 +18,7 @@ class CoursesController extends Controller
         // return "We in index";
         $courses = Courses::all();
         $data = compact('courses');
-        return view('courses.index')->with($data);
+        return view('admin.courses.index')->with($data);
 
 
         // return view('courses.index')->with($data);

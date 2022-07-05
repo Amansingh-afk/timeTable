@@ -21,7 +21,7 @@ class PeriodController extends Controller
         // print_r($data->toArray());
 
         $data = compact('period');
-        return view('Periods.index')->with($data);
+        return view('admin.Periods.index')->with($data);
     }
 
     /**

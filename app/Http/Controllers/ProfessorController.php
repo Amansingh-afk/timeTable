@@ -21,7 +21,7 @@ class ProfessorController extends Controller
         // print_r($data->toArray());
 
         $data = compact('professor');
-        return view('professors.index')->with($data);
+        return view('admin.professors.index')->with($data);
     }
 
     /**

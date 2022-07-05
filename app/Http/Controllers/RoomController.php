@@ -22,7 +22,7 @@ class RoomController extends Controller
         // print_r($data->toArray());
 
         $data = compact('rooms');
-        return view('rooms.index')->with($data);
+        return view('admin.rooms.index')->with($data);
     }
 
     /**
