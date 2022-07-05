@@ -16,16 +16,15 @@
 </head>
 
 <body class="">
-  <div class="wrapper ">
-    <div class="sidebar" data-color="red"><!--Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
-    -->
+  <div class="wrapper">
+    <div class="sidebar" data-color="red">
       <div class="logo">
         
         <a href="" class="simple-text logo-normal">
           SMS 
         </a>
       </div>
-      <div class="sidebar-wrapper" id="sidebar-wrapper">
+      <div class="sidebar-wrapper " id="sidebar-wrapper">
         <ul class="nav">
           <li>
             <a href="{{ route('dashboard') }}">
@@ -78,7 +77,7 @@
         </ul>
       </div>
     </div>
-    <div class="main-panel px-2" id="main-panel">
+    <div class="main-panel" id="main-panel">
       @yield('content')
       
       <!--   Core JS Files   -->

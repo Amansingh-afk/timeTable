@@ -19,10 +19,15 @@
       border-radius: 5px;
       background-color: #1c87c9;
       color: white;
-      padding: 14px 20px;
+      padding: 10px 20px;
       cursor: pointer;
-      position: fixed;
+      /* position: fixed; */
     }
+    .search_input {
+      border-radius: 5px;
+      border: 1px solid teal;
+    }
+
 
     .loginPopup {
       position: relative;
@@ -84,14 +89,16 @@
 </head>
 
 <body>
-  <input type="search" name="" class="w-25 bg-light" id="" placeholder="Search ">
-  <br>
+  <div class="container-fluid w-100 bg-dark">
+    <a class="navbar-brand px-4 text-light">Courses</a>
+  </div>
+  <div class="container my-2 d-flex justify-content-between">
+    <input type="search" name="" class="search_input w-50 bg-light px-2" id="" placeholder="Enter a keyword to search ">
+    <!-- {{-- <a href="{{ route('room.create')}}">Add new Room</a> --}} -->
 
-  {{-- <a href="{{ route('course.create')}}">Add new Cource</a> --}}
-
-
-  <div class="openBtn">
-    <button class="openButton" onclick="openForm()"><strong>Add new Course</strong></button>
+    <div class="openBtn">
+      <button class="openButton" onclick="openForm()"><strong>Add new Room</strong></button>
+    </div>
   </div>
   <div class="loginPopup">
     <div class="formPopup" id="popupForm">
@@ -118,8 +125,6 @@
   </div>
   <br>
   <br>
-  <br>
-  <br>
   <script>
     function openForm() {
       document.getElementById("popupForm").style.display = "block";
@@ -129,7 +134,7 @@
       document.getElementById("popupForm").style.display = "none";
     }
   </script>
-  <table class="table table-bordered table-striped">
+  <table class="table table-striped table-striped mx-2">
     <tr>
       <th>ID</th>
       <th>Name</th>

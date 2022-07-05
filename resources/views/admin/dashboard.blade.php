@@ -1,13 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
-    <div class="container-fluid">
-        <div class="navbar-wrapper">
-            <a class="navbar-brand bg-dark px-4">Dashboard</a>
-        </div>
-    </div>
-</nav>
-<!-- End Navbar -->
+<div class="container-fluid w-100 bg-dark">
+    <a class="navbar-brand px-4 text-light">Dashboard</a>
+  </div>
+
 @endsection

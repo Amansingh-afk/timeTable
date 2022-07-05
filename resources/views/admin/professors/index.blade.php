@@ -19,9 +19,14 @@
       border-radius: 5px;
       background-color: #1c87c9;
       color: white;
-      padding: 14px 20px;
+      padding: 10px 20px;
       cursor: pointer;
-      position: fixed;
+      /* position: fixed; */
+    }
+
+    .search_input {
+      border-radius: 5px;
+      border: 1px solid teal;
     }
 
     .loginPopup {
@@ -84,12 +89,16 @@
 </head>
 
 <body>
-  <input type="search" name="" class="w-25 bg-light" id="" placeholder="Search ">
-  <br>
-  {{-- <a href="{{ route('professor.create')}}">Add new Professor</a> --}}
+  <div class="container-fluid w-100 bg-dark">
+    <a class="navbar-brand px-4 text-light">Professors</a>
+  </div>
+  <div class="container my-2 d-flex justify-content-between">
+    <input type="search" name="" class="search_input w-50 bg-light px-2" id="" placeholder="Enter a keyword to search ">
+    <!-- {{-- <a href="{{ route('room.create')}}">Add new Room</a> --}} -->
 
-  <div class="openBtn">
-    <button class="openButton" onclick="openForm()"><strong>Add new Professor</strong></button>
+    <div class="openBtn">
+      <button class="openButton" onclick="openForm()"><strong>Add new Room</strong></button>
+    </div>
   </div>
   <div class="loginPopup">
     <div class="formPopup" id="popupForm">
