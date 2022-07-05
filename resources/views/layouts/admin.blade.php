@@ -15,11 +15,11 @@
 
 <body>
 
-   
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-2">
-            <h1 class="bg-danger"> SMS</h1>
+                <h1 class="bg-danger"> SMS</h1>
                 {{-- ------------------------------------------------------------------ --}}
 
                 <a href="{{route('room.index')}}">Rooms</a>
@@ -36,17 +36,11 @@
                 {{-- ------------------------------------------------------------------ --}}
             </div>
             <div class="col-md-10">
-            @yield('content')
+                @yield('content')
             </div>
         </div>
     </div>
-
-
-
-
-
-
-    <script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
