@@ -74,7 +74,7 @@ class PeriodController extends Controller
     public function edit( $period)
     {
         $customer=period::findorfail($period);
-        return view('periods.edit',compact('customer'));
+        return view('admin.periods.edit',compact('customer'));
     }
 
     /**

@@ -54,7 +54,7 @@
     .formContainer input[type=text],
     .formContainer input[type=password] {
       width: 100%;
-      padding: 15px;
+      padding: 10px;
       margin: 5px 0 20px 0;
       border: none;
       background: #eee;
@@ -94,7 +94,6 @@
   </div>
   <div class="container my-2 d-flex justify-content-between">
     <input type="search" name="" class="search_input w-50 bg-light px-2" id="" placeholder="Enter a keyword to search ">
-    <!-- {{-- <a href="{{ route('room.create')}}">Add new Room</a> --}} -->
 
     <div class="openBtn">
       <button class="openButton" onclick="openForm()"><strong>Add new Room</strong></button>
@@ -104,29 +103,27 @@
     <div class="formPopup" id="popupForm">
       <form action="{{route('period.store')}}" class="formContainer" method="POST">
         @csrf
-        <h2>Add New Time Slot</h2>
-        <label for="name">
+        <h5>Add New Time Slot</h5>
+        <label for="start">
           <strong>Start Time</strong>
         </label>
-        <input type="text" id="start" placeholder=" Start Time" name="name" required>
+        <input type="text" id="start" placeholder=" Start Time" name="start" required>
 
 
-        <label for="psw">
+        <label for="end">
           <strong>End Time</strong>
         </label>
         <input type="text" id="end" placeholder=" End Time" name="end" required>
 
-        <label for="psw">
+        <label for="time">
           <strong>Time</strong>
         </label>
-        <input type="text" id="time" placeholder=" Time" name="Time" required>
+        <input type="text" id="time" placeholder=" Time" name="time" required>
         <button type="submit" class="btn">Add Course</button>
         <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
       </form>
     </div>
   </div>
-  <br>
-  <br>
   <br>
   <br>
   <script>
@@ -139,7 +136,7 @@
     }
   </script>
 
-  <table class="table table-bordered table-striped">
+  <table class="table table-striped mx-2">
     <tr>
       <th>ID</th>
       <th>Start Time</th>
@@ -163,7 +160,7 @@
           @csrf
           @method('DELETE')
 
-          <a href="{{route('period.edit',$period1->id)}}" class="btn btn-primary">Edit</a>
+          <a href="{{route('period.edit',$period1->id)}}" class="btn btn-success">Edit</a>
           <button type="submit" class="btn btn-danger">Delete</button>
         </form>
       </td>
