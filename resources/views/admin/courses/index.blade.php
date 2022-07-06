@@ -97,7 +97,7 @@
     <!-- {{-- <a href="{{ route('room.create')}}">Add new Room</a> --}} -->
 
     <div class="openBtn">
-      <button class="openButton" onclick="openForm()"><strong>Add new Room</strong></button>
+      <button class="openButton" onclick="openForm()"><strong>+ Add new Courses</strong></button>
     </div>
   </div>
   <div class="loginPopup">

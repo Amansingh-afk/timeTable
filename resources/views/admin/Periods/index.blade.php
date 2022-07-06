@@ -96,7 +96,7 @@
     <input type="search" name="" class="search_input w-50 bg-light px-2" id="" placeholder="Enter a keyword to search ">
 
     <div class="openBtn">
-      <button class="openButton" onclick="openForm()"><strong>Add new Room</strong></button>
+      <button class="openButton" onclick="openForm()"><strong> + Add new Period</strong></button>
     </div>
   </div>
   <div class="loginPopup">
