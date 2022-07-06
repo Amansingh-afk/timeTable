@@ -1,8 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-<!DOCTYPE html>
-<html>
   <head>
     <title>Title of the document</title>
     <style>
@@ -103,8 +101,6 @@
             <strong>Name</strong>
           </label>
           <input type="text" id="name" placeholder=" Name" name="name" required>
-
-
           <label for="psw">
             <strong>Course Code</strong>
           </label>
@@ -119,19 +115,8 @@
         </form>
       </div>
     </div>
-
-
-
     <br>
     <br>
-    <br>
-    <br>
-
-
-
-
-
-
     <script>
       function openForm() {
         document.getElementById("popupForm").style.display = "block";
@@ -141,5 +126,4 @@
       }
     </script>
   </body>
-</html>
 @endsection

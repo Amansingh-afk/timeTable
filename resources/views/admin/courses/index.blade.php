@@ -117,7 +117,7 @@
         <label for="psw">
           <strong>Professor</strong>
         </label>
-        <input type="text" id="pro" placeholder=" Professor Name" name="pro" required>
+        <input type="text" id="pro" placeholder="Professor Name" name="pro" required>
         <button type="submit" class="btn">Add Course</button>
         <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
       </form>
@@ -134,7 +134,7 @@
       document.getElementById("popupForm").style.display = "none";
     }
   </script>
-  <table class="table table-striped table-striped mx-2">
+  <table class="table table-striped mx-2">
     <tr>
       <th>ID</th>
       <th>Name</th>
@@ -158,7 +158,7 @@
           @csrf
           @method('DELETE')
 
-          <a href="{{route('course.edit',$course->id)}}" class="btn btn-primary">Edit</a>
+          <a href="{{route('course.edit',$course->id)}}" class="btn btn-success">Edit</a>
           <button type="submit" class="btn btn-danger">Delete</button>
         </form>
       </td>

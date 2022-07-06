@@ -21,7 +21,7 @@
     <a href="{{route('period.create')}}">Period</a>
     <br>
 
-    <a href="{{ route('course.create')}}">Add new Cource</a>
+    <a href="{{ route('course.create')}}">+ Add new Cource</a>
     <table class="table table-bordered table-striped">
         <tr>
             <th>ID</th>

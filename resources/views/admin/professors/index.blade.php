@@ -46,7 +46,7 @@
     }
 
     .formContainer {
-      max-width: 300px;
+      max-width: 400px;
       padding: 20px;
       background-color: #fff;
     }
@@ -54,7 +54,7 @@
     .formContainer input[type=text],
     .formContainer input[type=password] {
       width: 100%;
-      padding: 15px;
+      padding: 10px;
       margin: 5px 0 20px 0;
       border: none;
       background: #eee;
@@ -97,14 +97,14 @@
     <!-- {{-- <a href="{{ route('room.create')}}">Add new Room</a> --}} -->
 
     <div class="openBtn">
-      <button class="openButton" onclick="openForm()"><strong>Add new Room</strong></button>
+      <button class="openButton" onclick="openForm()"><strong>Add new Professor</strong></button>
     </div>
   </div>
   <div class="loginPopup">
     <div class="formPopup" id="popupForm">
       <form action="{{route('professor.store')}}" class="formContainer" method="POST">
         @csrf
-        <h2>Add New Professor</h2>
+        <h5>Add New Professor</h5>
         <label for="name">
           <strong>Name</strong>
         </label>
@@ -130,10 +130,6 @@
       </form>
     </div>
   </div>
-  <br>
-  <br>
-  <br>
-  <br>
   <script>
     function openForm() {
       document.getElementById("popupForm").style.display = "block";
@@ -143,7 +139,9 @@
       document.getElementById("popupForm").style.display = "none";
     }
   </script>
-  <table class="table table-bordered table-striped">
+  <br>
+  <br>
+  <table class="table table- table-striped mx-2">
     <tr>
       <th>ID</th>
       <th>Name</th>
@@ -169,7 +167,7 @@
           @csrf
           @method('DELETE')
 
-          <a href="{{route('professor.edit',$professor1->id)}}" class="btn btn-primary">Edit</a>
+          <a href="{{route('professor.edit',$professor1->id)}}" class="btn btn-success">Edit</a>
           <button type="submit" class="btn btn-danger">Delete</button>
         </form>
       </td>

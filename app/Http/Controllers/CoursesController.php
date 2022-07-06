@@ -49,7 +49,7 @@ class CoursesController extends Controller
         $courses->course_code = $req->course;
         $courses->professor = $req->pro;
 
-        // $courses->save();
+        $courses->save();
         return redirect()->route('course.index');
 
         // return "Data inserted";
@@ -77,7 +77,7 @@ class CoursesController extends Controller
     public function edit($courses)
     {
         $customer=Courses::findorfail($courses);
-        return view('courses.edit',compact('customer'));
+        return view('admin.courses.edit',compact('customer'));
     }
 
     /**

@@ -89,7 +89,7 @@
 
     {{-- <h2>Create Rooms</h2> --}}
     <div class="openBtn">
-      <button class="openButton" onclick="openForm()"><strong>Add new Course</strong></button>
+      <button class="openButton" onclick="openForm()"><strong>+ Add new Course</strong></button>
     </div>
     <div class="loginPopup">
       <div class="formPopup" id="popupForm">

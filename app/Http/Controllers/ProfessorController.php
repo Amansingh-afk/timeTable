@@ -44,11 +44,11 @@ class ProfessorController extends Controller
     {
         $professor = new Professor;
         $professor->name = $req->name;
-        $professor->email = $req->email;
+        $professor->emali = $req->email;
         $professor->courses = $req->course;
         $professor->unavailable_periods = $req->Un_prid;
         
-        // $professor->save();
+        $professor->save();
 
         return redirect()->route('professor.index');
         // return "Data inserted";

@@ -45,15 +45,15 @@
     }
 
     .formContainer {
-      max-width: 300px;
-      padding: 20px;
+      max-width: 400px;
+      padding: 10px;
       background-color: #fff;
     }
 
     .formContainer input[type=text],
     .formContainer input[type=password] {
       width: 100%;
-      padding: 15px;
+      padding: 10px;
       margin: 5px 0 20px 0;
       border: none;
       background: #eee;
@@ -85,9 +85,7 @@
       opacity: 1;
     }
   </style>
-
 </head>
-
 <body>
   <div class="container-fluid w-100 bg-dark">
     <a class="navbar-brand px-4 text-light">Rooms</a>
@@ -97,14 +95,14 @@
     <!-- {{-- <a href="{{ route('room.create')}}">Add new Room</a> --}} -->
 
     <div class="openBtn">
-      <button class="openButton" onclick="openForm()"><strong>Add new Room</strong></button>
+      <button class="openButton" onclick="openForm()"><strong>+ Add new Room</strong></button>
     </div>
   </div>
   <div class="loginPopup">
     <div class="formPopup" id="popupForm">
       <form action="{{route('room.store')}}" class="formContainer" method="POST">
         @csrf
-        <h2>Please enter the details</h2>
+        <h5>Add New Lecture Room</h5>
         <label for="name">
           <strong>Name</strong>
         </label>
@@ -125,25 +123,16 @@
           <strong>Status</strong>
         </label>
         <input type="text" id="cap" placeholder=" Status" name="status" required>
-
         <label for="psw">
           <strong>Remark</strong>
         </label>
         <input type="text" id="cap" placeholder=" Remark" name="remark" required>
-
-
-
-
+        
         <button type="submit" class="btn">Add Lecture Room</button>
         <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
       </form>
     </div>
   </div>
-
-
-
-  <br>
-  <br>
   <br>
   <br>
   <script>
@@ -155,7 +144,7 @@
       document.getElementById("popupForm").style.display = "none";
     }
   </script>
-  <table class="table table-bordered table-striped">
+  <table class="table table-striped mx-2">
     <tr>
       <th>ID</th>
       <th>Name</th>
@@ -183,7 +172,7 @@
           @csrf
           @method('DELETE')
 
-          <a href="{{route('room.edit',$room->id)}}" class="btn btn-primary">Edit</a>
+          <a href="{{route('room.edit',$room->id)}}" class="btn btn-success">Edit</a>
           <button type="submit" class="btn btn-danger">Delete</button>
         </form>
       </td>

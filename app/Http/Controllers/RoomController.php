@@ -79,7 +79,7 @@ class RoomController extends Controller
     public function edit($room)
     {
         $customer=Room::findorfail($room);
-        return view('rooms.edit',compact('customer'));
+        return view('admin.rooms.edit',compact('customer'));
     }
 
     /**
