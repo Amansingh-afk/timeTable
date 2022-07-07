@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('classes', function (Blueprint $table) {
+        Schema::create('classes', function (Blueprint $table) {
             $table->string('Course');
             $table->string('Acdemic_period');
             $table->string('Meeting_per_week');
@@ -29,12 +29,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('classes', function (Blueprint $table) {
-        //     $table->dropColumn('Course');
-        //     $table->dropColumn('Acdemic_period');
-        //     $table->dropColumn('Meeting_per_week');
-        //     $table->dropColumn('Population');
-        //     $table->dropColumn('Unavailable_lecture_rooms');
+        Schema::create('classes', function (Blueprint $table) {
+            Schema::dropIfExists(('classes'));
 
             
         });
