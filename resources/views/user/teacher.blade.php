@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.userLayout')
 
 @section('content')
 <style>
@@ -54,9 +54,4 @@
 </p>
 </div>
 
-
-<a href="{{ route('logout') }}">
-    <!-- <i class="now-ui-icons media-1_button-power"></i> -->
-    <p>Logout</p>
-</a>
 @endsection
