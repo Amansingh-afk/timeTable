@@ -1,73 +1,108 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+<style>
+    body {
+        font-family: 'Open Sans', sans-serif;
+        background: #3498db;
+        margin: 0 auto 0 auto;
+        width: 100%;
+        text-align: center;
+        margin: 20px 0px 20px 0px;
+    }
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+    p {
+        font-size: 12px;
+        text-decoration: none;
+        color: #ffffff;
+    }
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+    h1 {
+        font-size: 1.5em;
+        color: #525252;
+    }
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+    .box {
+        background: white;
+        width: 300px;
+        border-radius: 6px;
+        margin: 0 auto 0 auto;
+        padding: 0px 0px 70px 0px;
+        border: #2980b9 4px solid;
+    }
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+    .email {
+        background: #ecf0f1;
+        border: #ccc 1px solid;
+        border-bottom: #ccc 2px solid;
+        padding: 8px;
+        width: 250px;
+        color: #AAAAAA;
+        margin-top: 10px;
+        font-size: 1em;
+        border-radius: 4px;
+    }
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+    .password {
+        border-radius: 4px;
+        background: #ecf0f1;
+        border: #ccc 1px solid;
+        padding: 8px;
+        width: 250px;
+        font-size: 1em;
+    }
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+    .btn {
+        background: #2ecc71;
+        width: 270px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        color: white;
+        border-radius: 4px;
+        border: #27ae60 1px solid;
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+        margin-top: 20px;
+        margin-bottom: 20px;
+        float: left;
+        margin-left: 16px;
+        font-weight: 800;
+        font-size: 0.8em;
+    }
 
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+    .btn:hover {
+        background: #2CC06B;
+    }
+</style>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:700,600' rel='stylesheet' type='text/css'>
 
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+<form method="POST" action="{{ route('login') }}">
+    @csrf
+    <div class="box">
+        <h1>Dashboard</h1>
 
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
+        <input type="email" name="email" placeholder="E-mail" onFocus="field_focus(this, 'email');" onblur="field_blur(this, 'email');" class="email @error('email') is-invalid @enderror" value="{{ old('email') }}" required" />
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        @error('email')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+        @enderror
+        <input type="password" id="password" name="password" placeholder="Password" onFocus="field_focus(this, 'email');" onblur="field_blur(this, 'email');" class="email " />
+
+        @error('password')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+        @enderror
+        <button type="submit" class="btn">
+            Sign In
+        </button>
     </div>
-</div>
+
+</form>
+@if (Route::has('password.request'))
+<p>Forgot your password? <a href="{{ route('password.request') }}" style="color:#f1c40f;">Click Here!</a></p>
+@endif
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
 @endsection
