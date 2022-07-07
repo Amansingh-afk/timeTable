@@ -1,62 +1,208 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.admin')
+
+@section('content')
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .openBtn {
+            display: flex;
+            justify-content: left;
+        }
+
+        .openButton {
+            border: none;
+            border-radius: 5px;
+            background-color: #1c87c9;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            /* position: fixed; */
+        }
+
+        .search_input {
+            border-radius: 5px;
+            border: 1px solid teal;
+        }
+
+        .loginPopup {
+            position: relative;
+            text-align: center;
+            width: 100%;
+        }
+
+        .formPopup {
+            display: none;
+            position: fixed;
+            left: 45%;
+            top: 5%;
+            transform: translate(-50%, 5%);
+            border: 3px solid #999999;
+            z-index: 9;
+        }
+
+        .formContainer {
+            max-width: 300px;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .formContainer input[type=text],
+        .formContainer input[type=password] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px 0;
+            border: none;
+            background: #eee;
+        }
+
+        .formContainer input[type=text]:focus,
+        .formContainer input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+        .formContainer .btn {
+            padding: 12px 20px;
+            border: none;
+            background-color: #8ebf42;
+            color: #fff;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+
+        .formContainer .cancel {
+            background-color: #cc0000;
+        }
+
+        .formContainer .btn:hover,
+        .openButton:hover {
+            opacity: 1;
+        }
+    </style>
 </head>
+
 <body>
-    <input type="search" name="" class = "w-25 bg-light" id="" placeholder="Search ">
-    <br>
+    <div class="container-fluid w-100 bg-dark">
+        <a class="navbar-brand px-4 text-light">Classes</a>
+    </div>
+    <div class="container my-2 d-flex justify-content-between">
+        <input type="search" name="" class="search_input w-50 bg-light px-2" id="" placeholder="Enter a keyword to search ">
 
-    <br>
-    <a href="{{route('room.index')}}">Rooms</a>
-    <br>
-    <a href="{{route('course.index')}}">Cources</a>
-    <br>
-    <a href="{{route('professor.index')}}">Professors</a>
-    <br>
-    <a href="{{route('period.create')}}">Period</a>
-    <br>
+        <div class="openBtn">
+            <button class="openButton" onclick="openForm()"><strong>+ Add new Classes</strong></button>
+        </div>
+    </div>
+    <div class="loginPopup">
+        <div class="formPopup" id="popupForm">
+            <form action="{{route('class.store')}}" class="formContainer" method="POST">
+                @csrf
+                <h5>Add New Class</h5>
+                <label for="name">
+                    <strong>Name</strong>
+                </label>
+                <input type="text" id="name" placeholder=" " name="classname" required>
 
-    <a href="{{ route('course.create')}}">+ Add new Cource</a>
-    <table class="table table-bordered table-striped">
+                <strong>Course:</strong> <select name="classcourse" id="" class="form-control">
+                    <option value="">Select Course</option>
+                    @php
+                    $courses=DB::table('courses')->get();
+                    $periods=DB::table('periods')->get();
+                    @endphp
+                    @foreach ($courses as $course)
+                    <option>{{$course->name}}</option>
+                    @endforeach
+
+                </select>
+                <br>
+                <strong>Academic Period:</strong> <select name="pre" id="" class="form-control">
+                    <option value="">Select time</option>
+                    @foreach ($periods as $period)
+                    <option>{{$period->start_time}}</option>
+                    @endforeach
+                    @foreach ($periods as $period)
+                    <option>{{$period->end_time}}</option>
+                    @endforeach
+                </select>
+
+                <br>
+
+                <label for="psw">
+                    <strong>Meetings per Week</strong>
+                </label>
+                <input type="text" id="course" placeholder="" name="meet" required>
+
+                <label for="psw">
+                    <strong>Population</strong>
+                </label>
+                <input type="text" id="pro" placeholder="" name="pop" required>
+
+                <label for="psw">
+                    <strong>Unavailable Lecture Rooms</strong>
+                </label>
+                <input type="text" id="pro" placeholder=" " name="un_rooms" required>
+                <button type="submit" class="btn">Add Class</button>
+                <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+            </form>
+        </div>
+    </div>
+    <br>
+    <br>
+    <table class="table table-striped mx-2">
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>course_code</th>
-            <th>professor</th>
+            <th>Course</th>
+            <th>Academic Period</th>
+            <th>Meetings per Week</th>
+            <th>Population</th>
+            <th>Unavailable Lecture Rooms</th>
             <th>Actions</th>
         </tr>
 
         @php
-            $c = 1
+        $c = 1
         @endphp
 
-    @foreach($courses as $course)
-    <tr>
-        <td>{{$c++ }}</td>
-        <td>{{ $course->name }}</td>
-        <td>{{ $course->course_code }}</td>
-        <td>{{ $course->professor }}</td>
-        <td>
-            <form action="{{route('course.destroy',$course->id)}}" method="post">
-                @csrf
-                @method('DELETE')
-            
-            <a href="{{route('course.edit',$course->id)}}" class="btn btn-primary">Edit</a>     
-            <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
-        </td>
-    </tr>
+        @foreach($classes as $class)
+        <tr>
+            <td>{{$c++ }}</td>
+            <td>{{ $class->name }}</td>
+            <td>{{ $class->Course }}</td>
+            <td>{{ $class->Acdemic_period }}</td>
+            <td>{{ $class->Meeting_per_week }}</td>
+            <td>{{ $class->Population }}</td>
+            <td>{{ $class->Unavailable_lecture_rooms }}</td>
+            <td>
+                <form action="{{route('class.destroy',$class->id)}}" method="post">
+                    @csrf
+                    @method('DELETE')
 
-    @endforeach
+                    <a href="{{route('class.edit',$class->id)}}" class="btn btn-primary">Edit</a>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+
+        @endforeach
 
     </table>
     {{-- {!! $teachers->links() !!} --}}
 
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function openForm() {
+            document.getElementById("popupForm").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("popupForm").style.display = "none";
+        }
+    </script>
 </body>
-</html>
+@endsection

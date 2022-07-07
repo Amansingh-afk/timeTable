@@ -15,8 +15,16 @@ class ClassesController extends Controller
      */
     public function index()
     {
-        //
+        // $data['classes']=Classes::orderBy('id','asc');
+        // return view('classes.index',$data);
+
+        $classes = Classes::all();
+        $data = compact('classes');
+        return view('admin.classes.index')->with($data);
+        
     }
+
+    
 
     /**
      * Show the form for creating a new resource.
@@ -25,7 +33,8 @@ class ClassesController extends Controller
      */
     public function create()
     {
-        //
+        // return "Hello";
+        return view('classes.create');
     }
 
     /**
@@ -36,7 +45,17 @@ class ClassesController extends Controller
      */
     public function store(StoreClassesRequest $request)
     {
-        //
+        $class=new Classes;
+        $class->name=$request->classname;
+        $class->Course=$request->classcourse;
+        $class->Acdemic_period=$request->pre;
+        $class->Meeting_per_week=$request->meet;
+        $class->Population=$request->pop;
+        $class->Unavailable_lecture_rooms=$request->un_rooms;
+        
+        $class->save();
+        // return "Data Saved Successfully"
+        return redirect()->route('class.index');
     }
 
     /**
@@ -56,9 +75,10 @@ class ClassesController extends Controller
      * @param  \App\Models\Classes  $classes
      * @return \Illuminate\Http\Response
      */
-    public function edit(Classes $classes)
+    public function edit( $ct)
     {
-        //
+        $class=Classes::findorfail($ct);
+        return view('classes.edit',compact('class'));
     }
 
     /**
@@ -68,9 +88,17 @@ class ClassesController extends Controller
      * @param  \App\Models\Classes  $classes
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateClassesRequest $request, Classes $classes)
+    public function update(UpdateClassesRequest $request,  $c)
     {
-        //
+        $class=Classes::findorfail($c);
+        $class->name=$request->classname;
+        $class->Course=$request->classcourse;
+        $class->Acdemic_period=$request->pre;
+        $class->Meeting_per_week=$request->meet;
+        $class->Population=$request->pop;
+        $class->Unavailable_lecture_rooms=$request->un_rooms;
+        $class->update();
+        return redirect()->route('class.index');
     }
 
     /**
@@ -79,8 +107,10 @@ class ClassesController extends Controller
      * @param  \App\Models\Classes  $classes
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Classes $classes)
+    public function destroy($classes)
     {
-        //
+        $classes=classes::findorfail($classes);
+        $classes->delete();
+        return redirect()->route('class.index');
     }
 }
