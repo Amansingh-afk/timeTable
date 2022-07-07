@@ -183,7 +183,7 @@
                     @csrf
                     @method('DELETE')
 
-                    <a href="{{route('class.edit',$class->id)}}" class="btn btn-primary">Edit</a>
+                    <a href="{{route('class.edit',$class->id)}}" class="btn btn-success">Edit</a>
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
             </td>

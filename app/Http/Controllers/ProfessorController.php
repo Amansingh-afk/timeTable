@@ -74,7 +74,7 @@ class ProfessorController extends Controller
     public function edit($professor)
     {
         $customer=Professor ::findorfail($professor);
-        return view('professors.edit',compact('customer'));
+        return view('admin.professors.edit',compact('customer'));
     }
 
     /**
@@ -88,7 +88,7 @@ class ProfessorController extends Controller
     {
         $professor1=Professor::findorfail($professor);
         $professor1->name=$request->name;
-        $professor1->email=$request->email;
+        $professor1->emali=$request->email;
         $professor1->courses=$request->course;
         $professor1->unavailable_periods=$request->Un_prid;
         $professor1->update();

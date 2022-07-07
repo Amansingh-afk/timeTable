@@ -78,7 +78,7 @@ class ClassesController extends Controller
     public function edit( $ct)
     {
         $class=Classes::findorfail($ct);
-        return view('classes.edit',compact('class'));
+        return view('admin.classes.edit',compact('class'));
     }
 
     /**

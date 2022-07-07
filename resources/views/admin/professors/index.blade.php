@@ -159,7 +159,7 @@
     <tr>
       <td>{{ $c++ }}</td>
       <td>{{ $professor1->name }}</td>
-      <td>{{ $professor1->email }}</td>
+      <td>{{ $professor1->emali }}</td>
       <td>{{ $professor1->courses }}</td>
       <td>{{ $professor1->unavailable_periods }}</td>
       <td>

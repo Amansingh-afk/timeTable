@@ -9,22 +9,24 @@
 </head>
 <body>
     <div class="container">
-    <form action="{{route('course.update',$customer->id)}}" method="post">
+    <form action="{{route('class.update',$class->id)}}" method="post">
         @csrf
         @method('PUT')
-    Name: <input type="text" name="name" id="" class="form-control" value="{{$customer->name}}">
-    <br>
-
-    Course Code: <input type="text" name="cap" id="" class="form-control" value="{{$customer->course_code}}">
-    <br>
-
-    Professor: <input type="text" name="pro" id="" class="form-control" value="{{$customer->professor}}">
-    <br>
-    
+        <strong>Name:</strong> <input type="text" name="classname" id="" class="form-control" value="{{$class->name}}">
+        <br>
+        <strong>Course:</strong> <input type="text" name="classcourse" id="" class="form-control" value="{{$class->Course}}">
+        <br>
+        <strong>Academic Period:</strong> <input type="text" name="pre" id="" class="form-control" value="{{$class->Acdemic_period}}">
+        <br>
+        <strong>Meetings per Week</strong> <input type="text" name="meet" id="" class="form-control" value="{{$class->Meeting_per_week}}">
+        <br>
+        <strong>Population</strong> <input type="text" name="pop" id="" class="form-control" value="{{$class->Population}}">
+        <br>
+        <strong>Unavailable Lecture Rkkooms</strong> <input type="text" name="un_rooms" id="" class="form-control" value="{{$class->Unavailable_lecture_rooms}}">
+        <br>
     <button type="submit" class="btn btn-success">Update</button>
     </form>
     </div>
 
-<script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
