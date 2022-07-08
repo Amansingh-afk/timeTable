@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\period;
 use App\Http\Requests\StoreperiodRequest;
 use App\Http\Requests\UpdateperiodRequest;
+use Illuminate\Http\Request;
 
 class PeriodController extends Controller
 {
@@ -23,6 +24,23 @@ class PeriodController extends Controller
         $data = compact('period');
         return view('admin.Periods.index')->with($data);
     }
+    // public function index(Request $request)
+    // {
+    //     // $rooms = Room::all();
+    //         $period = period::where([
+    //             ['name','!=', NULL],
+    //             [function($query) use ($request) {
+    //                 if(($term = $request->term)){
+    //                     $query->orWhere('name','LIKE', '%'. $term . '%')->get();
+    //                 }
+    //             }]
+    //         ])
+    //             ->orderBy("id","desc")
+    //             ->paginate(5);
+    //     // $data = compact('rooms');
+    //     return view('admin.Periods.index',compact('period'))
+    //     ->with('i',(request()->input('page',1) - 1 ) * 5);
+    // }
 
     /**
      * Show the form for creating a new resource.

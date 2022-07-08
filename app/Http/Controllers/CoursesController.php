@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Courses;
 use App\Http\Requests\StoreCoursesRequest;
 use App\Http\Requests\UpdateCoursesRequest;
+use Illuminate\Http\Request;
 
 class CoursesController extends Controller
 {
@@ -13,16 +14,36 @@ class CoursesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    // public function index()
+    // {
+    //     // return "We in index";
+    //     $courses = Courses::all();
+    //     $data = compact('courses');
+    //     return view('admin.courses.index')->with($data);
+
+
+    //     // return view('courses.index')->with($data);
+
+    // }
+    public function index(Request $request)
     {
-        // return "We in index";
-        $courses = Courses::all();
-        $data = compact('courses');
-        return view('admin.courses.index')->with($data);
-
-
-        // return view('courses.index')->with($data);
-
+        // $rooms = Room::all();
+            $courses = Courses::where([
+                ['name','!=', NULL],['course_code','!=',NULL],
+                [function($query) use ($request) {
+                    if(($term = $request->term)){
+                        $query->orWhere('name','LIKE', '%'. $term . '%')->get();
+                    }
+                    if(($term = $request->term)){
+                        $query->orWhere('course_code','LIKE', '%'. $term . '%')->get();
+                    }
+                }]
+            ])
+                ->orderBy("id","desc")
+                ->paginate(5);
+        // $data = compact('rooms');
+        return view('admin.courses.index',compact('courses'))
+        ->with('i',(request()->input('page',1) - 1 ) * 5);
     }
 
     /**
@@ -91,7 +112,7 @@ class CoursesController extends Controller
     {
         $course=Courses::findorfail($courses);
         $course->name=$request->name;
-        $course->course_code=$request->course;
+        $course->course_code=$request->cap;
         $course->professor=$request->pro;
         $course->update();
         return redirect()->route('course.index');

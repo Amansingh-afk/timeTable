@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Professor;
 use App\Http\Requests\StoreProfessorRequest;
 use App\Http\Requests\UpdateProfessorRequest;
+use Illuminate\Http\Request;
 
 class ProfessorController extends Controller
 {
@@ -13,16 +14,27 @@ class ProfessorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $professor = Professor::all();
-
-        // echo "<pre>";
-        // print_r($data->toArray());
-
-        $data = compact('professor');
-        return view('admin.professors.index')->with($data);
+        // $rooms = Room::all();
+            $professor = professor::where([
+                ['name','!=', NULL],['courses','!=',NULL],
+                [function($query) use ($request) {
+                    if(($term = $request->term)){
+                        $query->orWhere('name','LIKE', '%'. $term . '%')->get();
+                    }
+                    if(($term = $request->term)){
+                        $query->orWhere('courses','LIKE', '%'. $term . '%')->get();
+                    }
+                }]
+            ])
+                ->orderBy("id","desc")
+                ->paginate(5);
+        // $data = compact('rooms');
+        return view('admin.professors.index',compact('professor'))
+        ->with('i',(request()->input('page',1) - 1 ) * 5);
     }
+
 
     /**
      * Show the form for creating a new resource.

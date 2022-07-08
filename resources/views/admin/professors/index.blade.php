@@ -2,15 +2,6 @@
 
 @section('content')
 <style>
-  * {
-    box-sizing: border-box;
-  }
-
-  .openBtn {
-    display: flex;
-    justify-content: left;
-  }
-
   .openButton {
     border: none;
     border-radius: 5px;
@@ -62,22 +53,9 @@
     background-color: #ddd;
     outline: none;
   }
-
-  .formContainer .btn {
-    padding: 12px 20px;
-    border: none;
-    background-color: #1c87c9;
-    color: #fff;
-    cursor: pointer;
-    width: 100%;
-    margin-bottom: 15px;
-    opacity: 0.8;
+  .w{
+    width: 48%;
   }
-
-  .formContainer .cancel {
-    background-color: #cc0000;
-  }
-
   .formContainer .btn:hover,
   .openButton:hover {
     opacity: 1;
@@ -87,10 +65,24 @@
   <a class="navbar-brand px-4 text-light">Professors</a>
 </div>
 <div class="container my-2 d-flex justify-content-between">
-  <input type="search" name="" class="search_input w-50 bg-light px-2" id="" placeholder="Enter a keyword to search ">
-  <!-- {{-- <a href="{{ route('room.create')}}">Add new Room</a> --}} -->
-
-  <div class="openBtn">
+  <div class="w-50">
+    <form action="{{route('professor.index')}}" method="GET" role="search">
+      <input type="search" name="term" class="search_input w-75 bg-light p-2" id="term" placeholder="Enter a keyword to search ">
+      <span class="input-group-btn">
+        <button class="btn btn-info" type="submit" title="Search projects">
+          <span class="fas fa-search"></span>
+        </button>
+      </span>
+      <a href="{{ route('professor.index') }}" class=" mt-1">
+        <span class="input-group-btn">
+          <button class="btn btn-danger" type="button" title="Refresh page">
+            <span class="fas fa-sync-alt"></span>
+          </button>
+        </span>
+      </a>
+    </form>
+  </div>
+  <div>
     <button class="openButton" onclick="openForm()"><strong>+ Add new Professor</strong></button>
   </div>
 </div>
@@ -119,8 +111,8 @@
         <strong>Unavailable Periods</strong>
       </label>
       <input type="text" id="Un_prid" placeholder=" Unavailable Periods" name="Un_prid" required>
-      <button type="submit" class="btn">Add Professor</button>
-      <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+      <button type="submit" class="btn btn-info w">Add Professor</button>
+      <button type="button" class="btn btn-danger w" onclick="closeForm()">Close</button>
     </form>
   </div>
 </div>

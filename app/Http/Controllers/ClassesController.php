@@ -6,6 +6,8 @@ use App\Models\Classes;
 use App\Http\Requests\StoreClassesRequest;
 use App\Http\Requests\UpdateClassesRequest;
 
+use Illuminate\Http\Request;
+
 class ClassesController extends Controller
 {
     /**
@@ -13,16 +15,23 @@ class ClassesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $data['classes']=Classes::orderBy('id','asc');
-        // return view('classes.index',$data);
-
-        $classes = Classes::all();
-        $data = compact('classes');
-        return view('admin.classes.index')->with($data);
-        
+            $classes = Classes::where([
+                ['name','!=', NULL],['Course','!=',NULL],
+                [function($query) use ($request) {
+                    if(($term = $request->term)){
+                        $query->orWhere('name','LIKE', '%'. $term . '%')->get();
+                    }
+                }]
+            ])
+                ->orderBy("id","desc")
+                ->paginate(8);
+        return view('admin.classes.index',compact('classes'))
+        ->with('i',(request()->input('page',1) - 1 ) * 5);
     }
+
+    
 
     
 

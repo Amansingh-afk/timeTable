@@ -14,7 +14,7 @@
         @method('PUT')
     Name: <input type="text" name="name" id="" class="form-control" value="{{$customer->name}}">
     <br>
-    Email: <input type="text" name="email" id="" class="form-control" value="{{$customer->email}}">
+    Email: <input type="text" name="email" id="" class="form-control" value="{{$customer->emali}}">
     <br>
     Course: <input type="text" name="course" id="" class="form-control" value="{{$customer->courses}}">
     <br>

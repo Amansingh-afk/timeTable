@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Room;
 use App\Http\Requests\StoreRoomRequest;
 use App\Http\Requests\UpdateRoomRequest;
+use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
@@ -13,16 +14,22 @@ class RoomController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // return "hello";
-        $rooms = Room::all();
-
-        // echo "<pre>";
-        // print_r($data->toArray());
-
-        $data = compact('rooms');
-        return view('admin.rooms.index')->with($data);
+        // $rooms = Room::all();
+            $rooms = Room::where([
+                ['name','!=', NULL],
+                [function($query) use ($request) {
+                    if(($term = $request->term)){
+                        $query->orWhere('name','LIKE', '%'. $term . '%')->get();
+                    }
+                }]
+            ])
+                ->orderBy("id","desc")
+                ->paginate(5);
+        // $data = compact('rooms');
+        return view('admin.rooms.index',compact('rooms'))
+        ->with('i',(request()->input('page',1) - 1 ) * 5);
     }
 
     /**
@@ -96,7 +103,7 @@ class RoomController extends Controller
         $room->capacity=$request->cap;
         $room->type=$request->cType;
         $room->isActive=$request->status;
-        $room->remarks=$request->remark;
+        // $room->remarks=$request->remark;
         $room->update();
         return redirect()->route('room.index');   
     }
