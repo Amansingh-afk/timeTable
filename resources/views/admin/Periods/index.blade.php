@@ -2,12 +2,7 @@
 
 @section('content')
 
-<head>
-
   <style>
-    * {
-      box-sizing: border-box;
-    }
 
     .openBtn {
       display: flex;
@@ -31,7 +26,7 @@
 
     .loginPopup {
       position: relative;
-      text-align: center;
+      text-align: start;
       width: 100%;
     }
 
@@ -41,12 +36,12 @@
       left: 45%;
       top: 5%;
       transform: translate(-50%, 5%);
-      border: 3px solid #999999;
+      border: 2px solid #999999;
       z-index: 9;
     }
 
     .formContainer {
-      max-width: 300px;
+      max-width: 400px;
       padding: 20px;
       background-color: #fff;
     }
@@ -55,7 +50,7 @@
     .formContainer input[type=password] {
       width: 100%;
       padding: 10px;
-      margin: 5px 0 20px 0;
+      margin: 3px 0 10px 0;
       border: none;
       background: #eee;
     }
@@ -69,7 +64,7 @@
     .formContainer .btn {
       padding: 12px 20px;
       border: none;
-      background-color: #8ebf42;
+      background-color: #1c87c9;
       color: #fff;
       cursor: pointer;
       width: 100%;
@@ -86,9 +81,6 @@
       opacity: 1;
     }
   </style>
-</head>
-
-<body>
   <div class="container-fluid w-100 bg-dark">
     <a class="navbar-brand px-4 text-light">Periods</a>
   </div>
@@ -135,8 +127,8 @@
       document.getElementById("popupForm").style.display = "none";
     }
   </script>
-
-  <table class="table table-striped mx-2">
+<div class="px-4">
+  <table class="table table-striped ">
     <tr>
       <th>ID</th>
       <th>Start Time</th>
@@ -170,6 +162,5 @@
 
   </table>
   {{-- {!! $teachers->links() !!} --}}
-
-</body>
+</div>
 @endsection

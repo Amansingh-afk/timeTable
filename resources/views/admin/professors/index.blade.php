@@ -1,147 +1,142 @@
 @extends('layouts.admin')
 
 @section('content')
+<style>
+  * {
+    box-sizing: border-box;
+  }
 
-<head>
+  .openBtn {
+    display: flex;
+    justify-content: left;
+  }
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+  .openButton {
+    border: none;
+    border-radius: 5px;
+    background-color: #1c87c9;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    /* position: fixed; */
+  }
 
-    .openBtn {
-      display: flex;
-      justify-content: left;
-    }
+  .search_input {
+    border-radius: 5px;
+    border: 1px solid teal;
+  }
 
-    .openButton {
-      border: none;
-      border-radius: 5px;
-      background-color: #1c87c9;
-      color: white;
-      padding: 10px 20px;
-      cursor: pointer;
-      /* position: fixed; */
-    }
+  .loginPopup {
+    position: relative;
+    text-align: start;
+    width: 100%;
+  }
 
-    .search_input {
-      border-radius: 5px;
-      border: 1px solid teal;
-    }
+  .formPopup {
+    display: none;
+    position: fixed;
+    left: 45%;
+    top: 5%;
+    transform: translate(-50%, 5%);
+    border: 3px solid #999999;
+    z-index: 9;
+  }
 
-    .loginPopup {
-      position: relative;
-      text-align: center;
-      width: 100%;
-    }
+  .formContainer {
+    max-width: 400px;
+    padding: 20px;
+    background-color: #fff;
+  }
 
-    .formPopup {
-      display: none;
-      position: fixed;
-      left: 45%;
-      top: 5%;
-      transform: translate(-50%, 5%);
-      border: 3px solid #999999;
-      z-index: 9;
-    }
+  .formContainer input[type=text],
+  .formContainer input[type=password] {
+    width: 100%;
+    padding: 10px;
+    margin: 3px 0 10px 0;
+    border: none;
+    background: #eee;
+  }
 
-    .formContainer {
-      max-width: 400px;
-      padding: 20px;
-      background-color: #fff;
-    }
+  .formContainer input[type=text]:focus,
+  .formContainer input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+  }
 
-    .formContainer input[type=text],
-    .formContainer input[type=password] {
-      width: 100%;
-      padding: 10px;
-      margin: 5px 0 20px 0;
-      border: none;
-      background: #eee;
-    }
+  .formContainer .btn {
+    padding: 12px 20px;
+    border: none;
+    background-color: #1c87c9;
+    color: #fff;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 15px;
+    opacity: 0.8;
+  }
 
-    .formContainer input[type=text]:focus,
-    .formContainer input[type=password]:focus {
-      background-color: #ddd;
-      outline: none;
-    }
+  .formContainer .cancel {
+    background-color: #cc0000;
+  }
 
-    .formContainer .btn {
-      padding: 12px 20px;
-      border: none;
-      background-color: #8ebf42;
-      color: #fff;
-      cursor: pointer;
-      width: 100%;
-      margin-bottom: 15px;
-      opacity: 0.8;
-    }
+  .formContainer .btn:hover,
+  .openButton:hover {
+    opacity: 1;
+  }
+</style>
+<div class="container-fluid w-100 bg-dark">
+  <a class="navbar-brand px-4 text-light">Professors</a>
+</div>
+<div class="container my-2 d-flex justify-content-between">
+  <input type="search" name="" class="search_input w-50 bg-light px-2" id="" placeholder="Enter a keyword to search ">
+  <!-- {{-- <a href="{{ route('room.create')}}">Add new Room</a> --}} -->
 
-    .formContainer .cancel {
-      background-color: #cc0000;
-    }
-
-    .formContainer .btn:hover,
-    .openButton:hover {
-      opacity: 1;
-    }
-  </style>
-</head>
-
-<body>
-  <div class="container-fluid w-100 bg-dark">
-    <a class="navbar-brand px-4 text-light">Professors</a>
+  <div class="openBtn">
+    <button class="openButton" onclick="openForm()"><strong>+ Add new Professor</strong></button>
   </div>
-  <div class="container my-2 d-flex justify-content-between">
-    <input type="search" name="" class="search_input w-50 bg-light px-2" id="" placeholder="Enter a keyword to search ">
-    <!-- {{-- <a href="{{ route('room.create')}}">Add new Room</a> --}} -->
+</div>
+<div class="loginPopup">
+  <div class="formPopup" id="popupForm">
+    <form action="{{route('professor.store')}}" class="formContainer" method="POST">
+      @csrf
+      <h5>Add New Professor</h5>
+      <label for="name">
+        <strong>Name</strong>
+      </label>
+      <input type="text" id="name" placeholder=" Name" name="name" required>
 
-    <div class="openBtn">
-      <button class="openButton" onclick="openForm()"><strong>+ Add new Professor</strong></button>
-    </div>
+
+      <label for="psw">
+        <strong>Email</strong>
+      </label>
+      <input type="text" id="email" placeholder=" Email" name="email" required>
+
+      <label for="psw">
+        <strong>Courses</strong>
+      </label>
+      <input type="text" id="course" placeholder=" Course Name" name="course" required>
+
+      <label for="psw">
+        <strong>Unavailable Periods</strong>
+      </label>
+      <input type="text" id="Un_prid" placeholder=" Unavailable Periods" name="Un_prid" required>
+      <button type="submit" class="btn">Add Professor</button>
+      <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    </form>
   </div>
-  <div class="loginPopup">
-    <div class="formPopup" id="popupForm">
-      <form action="{{route('professor.store')}}" class="formContainer" method="POST">
-        @csrf
-        <h5>Add New Professor</h5>
-        <label for="name">
-          <strong>Name</strong>
-        </label>
-        <input type="text" id="name" placeholder=" Name" name="name" required>
+</div>
+<script>
+  function openForm() {
+    document.getElementById("popupForm").style.display = "block";
+  }
 
-
-        <label for="psw">
-          <strong>Email</strong>
-        </label>
-        <input type="text" id="email" placeholder=" Email" name="email" required>
-
-        <label for="psw">
-          <strong>Courses</strong>
-        </label>
-        <input type="text" id="course" placeholder=" Course Name" name="course" required>
-
-        <label for="psw">
-          <strong>Unavailable Periods</strong>
-        </label>
-        <input type="text" id="Un_prid" placeholder=" Unavailable Periods" name="Un_prid" required>
-        <button type="submit" class="btn">Add Professor</button>
-        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-      </form>
-    </div>
-  </div>
-  <script>
-    function openForm() {
-      document.getElementById("popupForm").style.display = "block";
-    }
-
-    function closeForm() {
-      document.getElementById("popupForm").style.display = "none";
-    }
-  </script>
-  <br>
-  <br>
-  <table class="table table- table-striped mx-2">
+  function closeForm() {
+    document.getElementById("popupForm").style.display = "none";
+  }
+</script>
+<br>
+<br>
+<div class="px-4">
+  <table class="table table- table-striped">
     <tr>
       <th>ID</th>
       <th>Name</th>
@@ -177,7 +172,5 @@
 
   </table>
   {{-- {!! $teachers->links() !!} --}}
-
-  <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
-</body>
+</div>
 @endsection

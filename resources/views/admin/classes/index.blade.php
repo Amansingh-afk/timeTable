@@ -1,8 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-
-<head>
     <style>
         * {
             box-sizing: border-box;
@@ -30,7 +28,7 @@
 
         .loginPopup {
             position: relative;
-            text-align: center;
+            text-align: start;
             width: 100%;
         }
 
@@ -45,7 +43,7 @@
         }
 
         .formContainer {
-            max-width: 300px;
+            width: 600px;
             padding: 20px;
             background-color: #fff;
         }
@@ -54,7 +52,7 @@
         .formContainer input[type=password] {
             width: 100%;
             padding: 10px;
-            margin: 5px 0 20px 0;
+            margin: 3px 0 10px 0;
             border: none;
             background: #eee;
         }
@@ -68,7 +66,7 @@
         .formContainer .btn {
             padding: 12px 20px;
             border: none;
-            background-color: #8ebf42;
+            background-color: #1c87c9;
             color: #fff;
             cursor: pointer;
             width: 100%;
@@ -85,9 +83,7 @@
             opacity: 1;
         }
     </style>
-</head>
 
-<body>
     <div class="container-fluid w-100 bg-dark">
         <a class="navbar-brand px-4 text-light">Classes</a>
     </div>
@@ -104,39 +100,40 @@
                 @csrf
                 <h5>Add New Class</h5>
                 <label for="name">
-                    <strong>Name</strong>
+                    <strong>Class Name</strong>
                 </label>
                 <input type="text" id="name" placeholder=" " name="classname" required>
+                <div class="d-flex">
+                    <strong>Course:</strong> <select name="classcourse" id="" class="form-control mx-2">
+                        <option value="">Select Course</option>
+                        @php
+                        $courses=DB::table('courses')->get();
+                        $periods=DB::table('periods')->get();
+                        @endphp
+                        @foreach ($courses as $course)
+                        <option>{{$course->name}}</option>
+                        @endforeach
 
-                <strong>Course:</strong> <select name="classcourse" id="" class="form-control">
-                    <option value="">Select Course</option>
-                    @php
-                    $courses=DB::table('courses')->get();
-                    $periods=DB::table('periods')->get();
-                    @endphp
-                    @foreach ($courses as $course)
-                    <option>{{$course->name}}</option>
-                    @endforeach
+                    </select>
+                    <br>
+                    <strong>Academic Period:</strong> <select name="pre" id="" class="form-control mx-2">
+                        <option value="">Select time</option>
+                        @foreach ($periods as $period)
+                        <option>{{$period->start_time}}</option>
+                        @endforeach
+                        @foreach ($periods as $period)
+                        <option>{{$period->end_time}}</option>
+                        @endforeach
+                    </select>
 
-                </select>
-                <br>
-                <strong>Academic Period:</strong> <select name="pre" id="" class="form-control">
-                    <option value="">Select time</option>
-                    @foreach ($periods as $period)
-                    <option>{{$period->start_time}}</option>
-                    @endforeach
-                    @foreach ($periods as $period)
-                    <option>{{$period->end_time}}</option>
-                    @endforeach
-                </select>
+                    <br>
 
-                <br>
-
-                <label for="psw">
-                    <strong>Meetings per Week</strong>
-                </label>
-                <input type="text" id="course" placeholder="" name="meet" required>
-
+                    </div>
+                    <label for="psw">
+                        <strong>Meetings per Week</strong>
+                    </label>
+                    <input type="text" id="course" placeholder="" name="meet" required>
+                
                 <label for="psw">
                     <strong>Population</strong>
                 </label>
@@ -146,14 +143,17 @@
                     <strong>Unavailable Lecture Rooms</strong>
                 </label>
                 <input type="text" id="pro" placeholder=" " name="un_rooms" required>
-                <button type="submit" class="btn">Add Class</button>
-                <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                <div class="d-flex">
+                    <button type="submit" class="btn">Add Class</button>
+                    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                </div>
             </form>
         </div>
     </div>
     <br>
     <br>
-    <table class="table table-striped mx-2">
+    <div class="px-4">
+    <table class="table table-striped">
         <tr>
             <th>ID</th>
             <th>Name</th>
@@ -204,5 +204,5 @@
             document.getElementById("popupForm").style.display = "none";
         }
     </script>
-</body>
+    </div>
 @endsection

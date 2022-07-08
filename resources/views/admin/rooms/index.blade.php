@@ -1,13 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-
-<head>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
+<style>
     .openBtn {
       display: flex;
       justify-content: left;
@@ -30,7 +24,7 @@
 
     .loginPopup {
       position: relative;
-      text-align: center;
+      text-align: start;
       width: 100%;
     }
 
@@ -68,10 +62,10 @@
     .formContainer .btn {
       padding: 12px 20px;
       border: none;
-      background-color: #8ebf42;
+      background-color: #1c87c9;
       color: #fff;
       cursor: pointer;
-      width: 100%;
+      width: 50%;
       margin-bottom: 15px;
       opacity: 0.8;
     }
@@ -85,8 +79,6 @@
       opacity: 1;
     }
   </style>
-</head>
-<body>
   <div class="container-fluid w-100 bg-dark">
     <a class="navbar-brand px-4 text-light">Rooms</a>
   </div>
@@ -102,7 +94,7 @@
     <div class="formPopup" id="popupForm">
       <form action="{{route('room.store')}}" class="formContainer" method="POST">
         @csrf
-        <h5>Add New Lecture Room</h5>
+        <h5 class="fw-bold">Add New Lecture Room</h5>
         <label for="name">
           <strong>Name</strong>
         </label>
@@ -123,13 +115,11 @@
           <strong>Status</strong>
         </label>
         <input type="text" id="cap" placeholder=" Status" name="status" required>
-        <label for="psw">
-          <strong>Remark</strong>
-        </label>
-        <input type="text" id="cap" placeholder=" Remark" name="remark" required>
         
+        <div class="d-flex">
         <button type="submit" class="btn">Add Lecture Room</button>
         <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        </div>
       </form>
     </div>
   </div>
@@ -144,7 +134,8 @@
       document.getElementById("popupForm").style.display = "none";
     }
   </script>
-  <table class="table table-striped mx-2">
+  <div class="px-4">
+  <table class="table table-striped">
     <tr>
       <th>ID</th>
       <th>Name</th>
@@ -181,6 +172,7 @@
     @endforeach
 
   </table>
+  </div>
   {{-- {!! $teachers->links() !!} --}}
-</body>
+
 @endsection

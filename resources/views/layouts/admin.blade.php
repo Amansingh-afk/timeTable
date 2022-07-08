@@ -15,7 +15,7 @@
   <link href="../assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
 </head>
 
-<body class="">
+<body>
   <div class="wrapper">
     <div class="sidebar" data-color="red">
       <div class="logo">

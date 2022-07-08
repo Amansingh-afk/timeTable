@@ -26,7 +26,9 @@
     <h5 class="">Lecture Rooms
       <i class="fa fa-home" style="float: right;" aria-hidden="true"></i>
     </h5>
-    <h3>0</h3>
+    @php
+    @endphp
+    <h3></h3>
   </div>
   <div class="room_card bg-warning rounded rounded-5 text-left text-light p-3 w-40">
     <h5 class="">Courses
