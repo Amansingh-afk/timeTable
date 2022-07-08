@@ -14,12 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('classes', function (Blueprint $table) {
+            $table->id();
             $table->string('name');
             $table->string('Course');
             $table->string('Acdemic_period');
             $table->string('Meeting_per_week');
             $table->string('Population');
             $table->string('Unavailable_lecture_rooms');
+            $table->timestamps();
         });
     }
 

@@ -49,7 +49,7 @@ class RoomController extends Controller
         $rooms->capacity = $req->cap;
         $rooms->type=$req->cType;
         $rooms->isActive=$req->status;
-        $rooms->remarks=$req->remark;
+        // $rooms->remarks=$req->remark;
         
         $rooms->save();
 

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::table('rooms', function (Blueprint $table) {
             $table->string('type');
             $table->boolean('isActive')->default(1);
-            $table->string('remarks');
+            // $table->string('remarks');
         });
     }
 
