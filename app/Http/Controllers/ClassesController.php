@@ -106,7 +106,7 @@ class ClassesController extends Controller
         $class->Meeting_per_week=$request->meet;
         $class->Population=$request->pop;
         $class->Unavailable_lecture_rooms=$request->un_rooms;
-        // $class->update();
+        $class->update();
         return redirect()->route('class.index');
     }
 
