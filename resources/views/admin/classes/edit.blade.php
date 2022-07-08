@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
-</head>
+
 <body>
     <div class="container">
     <form action="{{route('class.update',$class->id)}}" method="post">
@@ -22,11 +14,10 @@
         <br>
         <strong>Population</strong> <input type="text" name="pop" id="" class="form-control" value="{{$class->Population}}">
         <br>
-        <strong>Unavailable Lecture Rkkooms</strong> <input type="text" name="un_rooms" id="" class="form-control" value="{{$class->Unavailable_lecture_rooms}}">
+        <strong>Unavailable Lecture Rooms</strong> <input type="text" name="un_rooms" id="" class="form-control" value="{{$class->Unavailable_lecture_rooms}}">
         <br>
     <button type="submit" class="btn btn-success">Update</button>
     </form>
     </div>
 
 </body>
-</html>

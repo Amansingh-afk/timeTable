@@ -90,7 +90,7 @@
   <div class="formPopup" id="popupForm">
     <form action="{{route('room.store')}}" class="formContainer" method="POST">
       @csrf
-      <h5 class="fw-bold">Add New Lecture Room</h5>
+      <h5>Add New Lecture Room</h5>
       <label for="name">
         <strong>Name</strong>
       </label>

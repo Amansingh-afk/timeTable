@@ -53,6 +53,10 @@
         background-color: #ddd;
         outline: none;
     }
+    .drpdwn{
+        border-radius: 0;
+        background-color: #eee;
+    }
     .w{
     width: 49%;
   }
@@ -97,7 +101,7 @@
             </label>
             <input type="text" id="name" placeholder=" " name="classname" required>
             <div class="d-flex">
-                <strong>Course:</strong> <select name="classcourse" id="" class="form-control mx-2">
+                <strong>Course:</strong> <select name="classcourse" id="" class="form-control drpdwn mx-2">
                     <option value="">Select Course</option>
                     @php
                     $courses=DB::table('courses')->get();
@@ -109,7 +113,7 @@
 
                 </select>
                 <br>
-                <strong>Academic Period:</strong> <select name="pre" id="" class="form-control mx-2">
+                <strong>Academic Period:</strong> <select name="pre" id="" class="form-control drpdwn mx-2">
                     <option value="">Select time</option>
                     @foreach ($periods as $period)
                     <option>{{$period->start_time}}</option>
