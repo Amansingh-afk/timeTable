@@ -86,7 +86,7 @@
     </form>
   </div>
   <div>
-    <button class="openButton" onclick="openForm()"><strong>+ Add new Professor</strong></button>
+    <button class="openButton" onclick="openForm()"><strong>+ Add new Course</strong></button>
   </div>
 </div>
 <div class="loginPopup">

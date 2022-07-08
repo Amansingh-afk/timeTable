@@ -54,22 +54,9 @@
     background-color: #ddd;
     outline: none;
   }
-
-  .formContainer .btn {
-    padding: 12px 20px;
-    border: none;
-    background-color: #1c87c9;
-    color: #fff;
-    cursor: pointer;
-    width: 100%;
-    margin-bottom: 15px;
-    opacity: 0.8;
+  .w{
+    width: 48%;
   }
-
-  .formContainer .cancel {
-    background-color: #cc0000;
-  }
-
   .formContainer .btn:hover,
   .openButton:hover {
     opacity: 1;
@@ -97,7 +84,7 @@
     </form>
   </div>
   <div>
-    <button class="openButton" onclick="openForm()"><strong>+ Add new Professor</strong></button>
+    <button class="openButton" onclick="openForm()"><strong>+ Add new Period</strong></button>
   </div>
 </div>
 <div class="loginPopup">
@@ -120,8 +107,8 @@
         <strong>Time</strong>
       </label>
       <input type="text" id="time" placeholder=" Time" name="time" required>
-      <button type="submit" class="btn">Add Course</button>
-      <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+      <button type="submit" class="btn btn-info w">Add Course</button>
+      <button type="button" class="btn btn-danger w" onclick="closeForm()">Close</button>
     </form>
   </div>
 </div>
