@@ -33,7 +33,14 @@ class HomeController extends Controller
         return view('auth.login');
     }
     public function isStudent(){
-        return view('user.student');
+
+        
+        $roomsCount = Room::count();
+        $coursesCount = Courses::count();
+        $professorsCount = Professor::count();
+        $classesCount = Classes::count();
+
+        return view('user.student', compact('roomsCount','coursesCount','professorsCount','classesCount'));
     }
     public function adminHome()
     {
@@ -52,7 +59,13 @@ class HomeController extends Controller
     }
     public function isTeacher()
     {
-        return view('user.teacher');
+        
+        $roomsCount = Room::count();
+        $coursesCount = Courses::count();
+        $professorsCount = Professor::count();
+        $classesCount = Classes::count();
+
+        return view('user.teacher', compact('roomsCount','coursesCount','professorsCount','classesCount'));
     }
     public function logout() {
         Session::flush();
