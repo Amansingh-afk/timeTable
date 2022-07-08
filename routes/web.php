@@ -1,13 +1,12 @@
 <?php
 
-
-use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\PeriodController;
 use App\Http\Controllers\ProfessorController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoomController;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 

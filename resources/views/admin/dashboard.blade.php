@@ -26,27 +26,25 @@
     <h5 class="">Lecture Rooms
       <i class="fa fa-home" style="float: right;" aria-hidden="true"></i>
     </h5>
-    @php
-    @endphp
-    <h3></h3>
+    <h3>{{$roomsCount}}</h3>
   </div>
   <div class="room_card bg-warning rounded rounded-5 text-left text-light p-3 w-40">
     <h5 class="">Courses
       <i class="fa fa-book" style="float: right;" aria-hidden="true"></i>
     </h5>
-    <h3>0</h3>
+    <h3>{{$coursesCount}}</h3>
   </div>
   <div class="room_card bg-success rounded rounded-5 text-left text-light p-3 w-40">
     <h5 class="">Professors
       <i class="fa fa-graduation-cap" style="float: right;" aria-hidden="true"></i>
     </h5>
-    <h3>0</h3>
+    <h3>{{$professorsCount}}</h3>
   </div>
   <div class="room_card bg-info rounded rounded-5 text-left text-light p-3 w-40">
     <h5 class="">Classes
       <i class="fa fa-users" style="float: right;" aria-hidden="true"></i>
     </h5>
-    <h3>0</h3>
+    <h3>{{$classesCount}}</h3>
   </div>
 </div>
 <div class="text-center mt-5">

@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('classes', function (Blueprint $table) {
+            $table->string('name');
             $table->string('Course');
             $table->string('Acdemic_period');
             $table->string('Meeting_per_week');
