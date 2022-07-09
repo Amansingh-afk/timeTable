@@ -26,16 +26,21 @@
     .formPopup {
         display: none;
         position: fixed;
-        left: 45%;
-        top: 5%;
-        transform: translate(-50%, 5%);
-        border: 3px solid #999999;
+        border-radius: 10px;
+        left: 50%;
+        top: 10%;
+        transform: translate(-50%, 8%);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         z-index: 9;
     }
+  h5{
+    font-weight: 600;
+  }
 
     .formContainer {
         width: 500px;
         padding: 20px;
+        border-radius: 10px;
         background-color: #fff;
     }
 

@@ -26,16 +26,21 @@
   .formPopup {
     display: none;
     position: fixed;
-    left: 45%;
-    top: 5%;
-    transform: translate(-50%, 5%);
-    border: 3px solid #999999;
+    left: 50%;
+    top: 10%;
+    border-radius: 10px;
+    transform: translate(-50%, 8%);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     z-index: 9;
+  }
+  h5{
+    font-weight: 600;
   }
 
   .formContainer {
     max-width: 400px;
     padding: 10px;
+    border-radius: 10px;
     background-color: #fff;
   }
 
@@ -92,9 +97,9 @@
       @csrf
       <h5>Add New Lecture Room</h5>
       <label for="name">
-        <strong>Name</strong>
+        <strong>Room Name</strong>
       </label>
-      <input type="text" id="name" placeholder=" Name" name="name" required>
+      <input type="text" id="name" placeholder="Room Name" name="name" required>
 
 
       <label for="psw">
@@ -103,9 +108,9 @@
       <input type="text" id="cap" placeholder=" Capacity" name="cap" required>
 
       <label for="psw">
-        <strong>Class Type</strong>
+        <strong>Room Type</strong>
       </label>
-      <input type="text" id="cap" placeholder=" Class Type" name="cType" required>
+      <input type="text" id="cap" placeholder=" Room Type" name="cType" required>
 
       <label for="psw">
         <strong>Status</strong>

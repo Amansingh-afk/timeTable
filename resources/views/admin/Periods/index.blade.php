@@ -28,10 +28,11 @@
   .formPopup {
     display: none;
     position: fixed;
-    left: 45%;
+    left: 50%;
     top: 5%;
     transform: translate(-50%, 5%);
-    border: 2px solid #999999;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
     z-index: 9;
   }
 
@@ -39,8 +40,11 @@
     max-width: 400px;
     padding: 20px;
     background-color: #fff;
+    border-radius: 10px;
   }
-
+  h5{
+    font-weight: 600;
+  }
   .formContainer input[type=text],
   .formContainer input[type=password] {
     width: 100%;
@@ -73,7 +77,7 @@
   <div class="formPopup" id="popupForm">
     <form action="{{route('period.store')}}" class="formContainer" method="POST">
       @csrf
-      <h5>Add New Time Slot</h5>
+      <h5 >Add New Time Slot</h5>
       <label for="start">
         <strong>Start Time</strong>
       </label>

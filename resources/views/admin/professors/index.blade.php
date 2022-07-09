@@ -23,13 +23,17 @@
     width: 100%;
   }
 
+  h5{
+    font-weight: 600;
+  }
   .formPopup {
     display: none;
     position: fixed;
-    left: 45%;
-    top: 5%;
+    left: 50%;
+    top: 14%;
+    border-radius: 10px;
     transform: translate(-50%, 5%);
-    border: 3px solid #999999;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     z-index: 9;
   }
 
@@ -37,6 +41,7 @@
     max-width: 400px;
     padding: 20px;
     background-color: #fff;
+    border-radius: 10px;
   }
 
   .formContainer input[type=text],
