@@ -6,7 +6,7 @@ use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\PeriodController;
 use App\Http\Controllers\ProfessorController;
 use App\Http\Controllers\RoomController;
-
+use App\Http\Controllers\TimetableController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -50,4 +50,7 @@ Route::resource('professor',ProfessorController :: class);
 Route::resource('class',ClassesController::class);
 
 Route::resource('period',PeriodController::class);
+
+
+Route::resource('timetable',TimetableController::class);
 

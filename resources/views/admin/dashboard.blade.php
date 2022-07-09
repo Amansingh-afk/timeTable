@@ -12,9 +12,18 @@
     outline: none;
     border: 0;
   }
-.tt{
-  font-size: 36px;
-}
+  a{
+    text-decoration: none;
+    color: #000;
+  }
+  a:hover{
+    color: #000;
+  }
+
+  .tt {
+    font-size: 36px;
+  }
+
   .btn:hover {
     background: teal;
   }
@@ -50,12 +59,16 @@
   </div>
 </div>
 <div class="text-center mt-5">
-  <button type="button" class="tableBtn rounded py-2 px-4">
+  <button type="button" class="tableBtn rounded text-dark py-2 px-4">
+    
+  <a href="{{route('timetable.index')}}">
     <i class="fa fa-calendar" aria-hidden="true"></i>
     Generate New Timetable
+  </a>
   </button>
   <p class="tt">
-    No Timetable generated yet
+      No Timetable generated yet
+
   </p>
 </div>
 

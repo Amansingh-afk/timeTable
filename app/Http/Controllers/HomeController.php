@@ -42,10 +42,6 @@ class HomeController extends Controller
 
         return view('user.student', compact('roomsCount','coursesCount','professorsCount','classesCount'));
     }
-    public function adminHome()
-    {
-        return view('admin-home');
-    }
     public function dashboard()
     {
         $roomsCount = Room::count();
