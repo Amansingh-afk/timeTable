@@ -137,7 +137,7 @@
   <table class="table table-striped ">
     <tr>
       <th>ID</th>
-      <th>Paper Name</th>
+      <th style="width: 250px;">Paper Name</th>
       <th>paper code</th>
       <th>Department</th>
       <th>Sem/Year</th>

@@ -29,7 +29,7 @@ class ProfessorController extends Controller
                 }]
             ])
                 ->orderBy("id","desc")
-                ->paginate(5);
+                ->paginate(10);
         // $data = compact('rooms');
         return view('admin.professors.index',compact('professor'))
         ->with('i',(request()->input('page',1) - 1 ) * 5);
