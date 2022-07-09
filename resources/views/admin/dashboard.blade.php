@@ -12,7 +12,9 @@
     outline: none;
     border: 0;
   }
-
+.tt{
+  font-size: 36px;
+}
   .btn:hover {
     background: teal;
   }
@@ -52,7 +54,7 @@
     <i class="fa fa-calendar" aria-hidden="true"></i>
     Generate New Timetable
   </button>
-  <p class="para">
+  <p class="tt">
     No Timetable generated yet
   </p>
 </div>

@@ -68,6 +68,8 @@ class CoursesController extends Controller
         $courses = new Courses;
         $courses->name = $req->name;
         $courses->course_code = $req->course;
+        $courses->department = $req->department;
+        $courses->semester = $req->year;
         $courses->professor = $req->pro;
 
         $courses->save();
@@ -113,6 +115,8 @@ class CoursesController extends Controller
         $course=Courses::findorfail($courses);
         $course->name=$request->name;
         $course->course_code=$request->cap;
+        $course->department = $request->department;
+        $course->semester = $request->year;
         $course->professor=$request->pro;
         $course->update();
         return redirect()->route('course.index');

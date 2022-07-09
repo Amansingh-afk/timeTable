@@ -64,6 +64,7 @@ class PeriodController extends Controller
         $period->start_time = $req->start;
         $period->end_time = $req->end;
         $period->AM_PM = $req->time;
+        $period->period_number = $req->periodRank;
 
         // return "Data inserted";
 
@@ -108,6 +109,7 @@ class PeriodController extends Controller
         $period->start_time = $req->start;
         $period->end_time = $req->end;
         $period->AM_PM = $req->time;
+        $period->period_number = $req->periodRank;
         $period->update();
         return redirect()->route('period.index'); 
     }

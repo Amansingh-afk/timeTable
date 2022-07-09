@@ -20,6 +20,8 @@
 
     Professor: <input type="text" name="time" id="" class="form-control" value="{{$customer->AM_PM}}">
     <br>
+
+    Period No.: <input type="text" name="periodRank" class="form-control" value="{{$customer->period_number}}">
     
     <button type="submit" class="btn btn-success">Update</button>
     </form>

@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('classes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('Course');
-            $table->string('Acdemic_period');
+            $table->string('department');
+            $table->string('semester');
+            $table->string('start_time');
+            $table->string('end_time');
             $table->string('Meeting_per_week');
-            $table->string('Population');
-            $table->string('Unavailable_lecture_rooms');
             $table->timestamps();
         });
     }

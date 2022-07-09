@@ -4,6 +4,7 @@
 
 <style>
   .openButton {
+    float: right;
     border: none;
     border-radius: 5px;
     background-color: #1c87c9;
@@ -65,27 +66,8 @@
 <div class="container-fluid w-100 bg-dark">
   <a class="navbar-brand px-4 text-light">Periods</a>
 </div>
-<div class="container my-2 d-flex justify-content-between">
-  <div class="w-50">
-    <form action="{{route('professor.index')}}" method="GET" role="search">
-      <input type="search" name="term" class="search_input w-75 bg-light p-2" id="term" placeholder="Enter a keyword to search ">
-      <span class="input-group-btn">
-        <button class="btn btn-info" type="submit" title="Search projects">
-          <span class="fas fa-search"></span>
-        </button>
-      </span>
-      <a href="{{ route('professor.index') }}" class=" mt-1">
-        <span class="input-group-btn">
-          <button class="btn btn-danger" type="button" title="Refresh page">
-            <span class="fas fa-sync-alt"></span>
-          </button>
-        </span>
-      </a>
-    </form>
-  </div>
-  <div>
+<div class="container my-2 ">
     <button class="openButton" onclick="openForm()"><strong>+ Add new Period</strong></button>
-  </div>
 </div>
 <div class="loginPopup">
   <div class="formPopup" id="popupForm">
@@ -107,6 +89,12 @@
         <strong>Time</strong>
       </label>
       <input type="text" id="time" placeholder=" Time" name="time" required>
+
+      <label for="rank">
+        <strong>Period No.</strong>
+      </label>
+      <input type="text" id="rank" name="periodRank" required>
+      
       <button type="submit" class="btn btn-info w">Add Course</button>
       <button type="button" class="btn btn-danger w" onclick="closeForm()">Close</button>
     </form>
@@ -124,12 +112,13 @@
   }
 </script>
 <div class="px-4">
-  <table class="table table-striped ">
+  <table class="table table-striped mt-2 ">
     <tr>
       <th>ID</th>
       <th>Start Time</th>
       <th>End Time</th>
       <th>AM/PM</th>
+      <th>Period No.</th>
       <th>Actions</th>
     </tr>
 
@@ -143,6 +132,7 @@
       <td>{{ $period1->start_time }}</td>
       <td>{{ $period1->end_time }}</td>
       <td>{{ $period1->AM_PM }}</td>
+      <td>{{$period1->period_number}}</td>
       <td>
         <form action="{{route('period.destroy',$period1->id)}}" method="post">
           @csrf

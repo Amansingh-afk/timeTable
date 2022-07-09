@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('start_time');
             $table->string('end_time');
             $table->string('AM_PM');
+            $table->integer('period_number');
             $table->timestamps();
         });
     }

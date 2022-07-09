@@ -6,15 +6,15 @@
         @method('PUT')
         <strong>Name:</strong> <input type="text" name="classname" id="" class="form-control" value="{{$class->name}}">
         <br>
-        <strong>Course:</strong> <input type="text" name="classcourse" id="" class="form-control" value="{{$class->Course}}">
+        <strong>Department:</strong> <input type="text" name="department" id="" class="form-control" value="{{$class->department}}">
         <br>
-        <strong>Academic Period:</strong> <input type="text" name="pre" id="" class="form-control" value="{{$class->Acdemic_period}}">
+        <strong>Semester:</strong> <input type="text" name="sem" id="" class="form-control" value="{{$class->semester}}">
         <br>
-        <strong>Meetings per Week</strong> <input type="text" name="meet" id="" class="form-control" value="{{$class->Meeting_per_week}}">
+        <strong>Start Time</strong> <input type="text" name="st" id="" class="form-control" value="{{$class->start_time}}">
         <br>
-        <strong>Population</strong> <input type="text" name="pop" id="" class="form-control" value="{{$class->Population}}">
+        <strong>End Time</strong> <input type="text" name="et" id="" class="form-control" value="{{$class->end_time}}">
         <br>
-        <strong>Unavailable Lecture Rooms</strong> <input type="text" name="un_rooms" id="" class="form-control" value="{{$class->Unavailable_lecture_rooms}}">
+        <strong>Meetings per Week</strong> <input type="text" name="meeting" id="" class="form-control" value="{{$class->Meeting_per_week}}">
         <br>
     <button type="submit" class="btn btn-success">Update</button>
     </form>

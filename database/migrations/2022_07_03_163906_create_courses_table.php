@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('course_code');
+            $table->string('department');
+            $table->String('semester');
             $table->string('professor');
             $table->timestamps();
         });

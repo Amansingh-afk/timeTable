@@ -17,23 +17,23 @@ class ClassesController extends Controller
      */
     public function index(Request $request)
     {
-            $classes = Classes::where([
-                ['name','!=', NULL],['Course','!=',NULL],
-                [function($query) use ($request) {
-                    if(($term = $request->term)){
-                        $query->orWhere('name','LIKE', '%'. $term . '%')->get();
-                    }
-                }]
-            ])
-                ->orderBy("id","desc")
-                ->paginate(8);
-        return view('admin.classes.index',compact('classes'))
-        ->with('i',(request()->input('page',1) - 1 ) * 5);
+        $classes = Classes::where([
+            ['name', '!=', NULL], ['department', '!=', NULL],
+            [function ($query) use ($request) {
+                if (($term = $request->term)) {
+                    $query->orWhere('name', 'LIKE', '%' . $term . '%')->get();
+                }
+            }]
+        ])
+            ->orderBy("id", "desc")
+            ->paginate(8);
+        return view('admin.classes.index', compact('classes'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
-    
 
-    
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -54,14 +54,14 @@ class ClassesController extends Controller
      */
     public function store(StoreClassesRequest $request)
     {
-        $class=new Classes;
-        $class->name=$request->classname;
-        $class->Course=$request->classcourse;
-        $class->Acdemic_period=$request->pre;
-        $class->Meeting_per_week=$request->meet;
-        $class->Population=$request->pop;
-        $class->Unavailable_lecture_rooms=$request->un_rooms;
-        
+        $class = new Classes;
+        $class->name = $request->classname;
+        $class->department = $request->department;
+        $class->semester = $request->sem;
+        $class->start_time = $request->st;
+        $class->end_time = $request->et;
+        $class->Meeting_per_week = $request->meeting;
+
         $class->save();
         // return "Data Saved Successfully"
         return redirect()->route('class.index');
@@ -84,10 +84,11 @@ class ClassesController extends Controller
      * @param  \App\Models\Classes  $classes
      * @return \Illuminate\Http\Response
      */
-    public function edit( $ct)
+    public function edit($ct)
     {
-        $class=Classes::findorfail($ct);
-        return view('admin.classes.edit',compact('class'));
+        $class = Classes::findorfail($ct);
+
+        return view('admin.classes.edit', compact('class'));
     }
 
     /**
@@ -99,14 +100,16 @@ class ClassesController extends Controller
      */
     public function update(UpdateClassesRequest $request,  $c)
     {
-        $class=Classes::findorfail($c);
-        $class->name=$request->classname;
-        $class->Course=$request->classcourse;
-        $class->Acdemic_period=$request->pre;
-        $class->Meeting_per_week=$request->meet;
-        $class->Population=$request->pop;
-        $class->Unavailable_lecture_rooms=$request->un_rooms;
+        $class = Classes::findorfail($c);
+        $class->name = $request->classname;
+        $class->department = $request->department;
+        $class->semester = $request->sem;
+        $class->start_time = $request->st;
+        $class->end_time = $request->et;
+        $class->Meeting_per_week = $request->meeting;
+
         $class->update();
+        
         return redirect()->route('class.index');
     }
 
@@ -118,8 +121,9 @@ class ClassesController extends Controller
      */
     public function destroy($classes)
     {
-        $classes=classes::findorfail($classes);
+        $classes = classes::findorfail($classes);
         $classes->delete();
+        
         return redirect()->route('class.index');
     }
 }

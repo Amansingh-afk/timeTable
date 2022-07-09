@@ -34,7 +34,7 @@
     }
 
     .formContainer {
-        width: 600px;
+        width: 500px;
         padding: 20px;
         background-color: #fff;
     }
@@ -53,13 +53,16 @@
         background-color: #ddd;
         outline: none;
     }
-    .drpdwn{
+
+    .drpdwn {
         border-radius: 0;
         background-color: #eee;
     }
-    .w{
-    width: 49%;
-  }
+
+    .w {
+        width: 49%;
+    }
+
     .formContainer .btn:hover,
     .openButton:hover {
         opacity: 1;
@@ -97,49 +100,54 @@
             @csrf
             <h5>Add New Class</h5>
             <label for="name">
-                <strong>Class Name</strong>
+                <!-- <strong>Class Name</strong>
             </label>
-            <input type="text" id="name" placeholder=" " name="classname" required>
-            <div class="d-flex">
-                <strong>Course:</strong> <select name="classcourse" id="" class="form-control drpdwn mx-2">
+            <input type="text" id="name" placeholder=" " name="classname" required> -->
+            <strong>Subject:</strong> <select name="classname" id="name" class="form-control drpdwn m-2">
                     <option value="">Select Course</option>
                     @php
                     $courses=DB::table('courses')->get();
-                    $periods=DB::table('periods')->get();
                     @endphp
                     @foreach ($courses as $course)
                     <option>{{$course->name}}</option>
                     @endforeach
-
                 </select>
-                <br>
-                <strong>Academic Period:</strong> <select name="pre" id="" class="form-control drpdwn mx-2">
+            <div class="d-flex align-items-center">
+                <strong>Department:</strong> <select name="department" id="" class="form-control drpdwn m-2">
+                    <option value="">Select Course</option>
+                    @php
+                    $periods=DB::table('periods')->get();
+                    @endphp
+                    @foreach ($courses as $course)
+                    <option>{{$course->course_code}}</option>
+                    @endforeach
+                </select>
+                <strong>Sem: </strong>
+                <input type="text" name="sem" class="form-control mx-2 drpdwn">
+            </div>
+            <div class="d-flex align-items-center">
+                <strong class="text-nowrap ">Start-time</strong> <select name="st" id="" class="form-control drpdwn m-2">
                     <option value="">Select time</option>
                     @foreach ($periods as $period)
                     <option>{{$period->start_time}}</option>
                     @endforeach
+                </select>
+
+                <br>
+
+                <strong class="text-nowrap">End-time</strong> <select name="et" id="" class="form-control drpdwn m-2">
+                    <option value="">Select time</option>
                     @foreach ($periods as $period)
                     <option>{{$period->end_time}}</option>
                     @endforeach
                 </select>
 
-                <br>
-
             </div>
-            <label for="psw">
+            <label for="meet">
                 <strong>Meetings per Week</strong>
             </label>
-            <input type="text" id="course" placeholder="" name="meet" required>
+            <input type="text" id="meet" placeholder="" name="meeting" required>
 
-            <label for="psw">
-                <strong>Population</strong>
-            </label>
-            <input type="text" id="pro" placeholder="" name="pop" required>
-
-            <label for="psw">
-                <strong>Unavailable Lecture Rooms</strong>
-            </label>
-            <input type="text" id="pro" placeholder=" " name="un_rooms" required>
             <div class="d-flex">
                 <button type="submit" class="btn btn-info w">Add Class</button>
                 <button type="button" class="btn btn-danger w" onclick="closeForm()">Close</button>
@@ -154,11 +162,11 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Course</th>
-            <th>Academic Period</th>
-            <th>Meetings per Week</th>
-            <th>Population</th>
-            <th>Unavailable Lecture Rooms</th>
+            <th>Department</th>
+            <th>Semester</th>
+            <th>Start time</th>
+            <th>End time</th>
+            <th>Meetings per week</th>
             <th>Actions</th>
         </tr>
 
@@ -170,11 +178,12 @@
         <tr>
             <td>{{$c++ }}</td>
             <td>{{ $class->name }}</td>
-            <td>{{ $class->Course }}</td>
-            <td>{{ $class->Acdemic_period }}</td>
+            <td>{{ $class->department }}</td>
+            <td>{{ $class->semester }}</td>
+            <td>{{ $class->start_time }}</td>
+            <td>{{ $class->end_time }}</td>
             <td>{{ $class->Meeting_per_week }}</td>
-            <td>{{ $class->Population }}</td>
-            <td>{{ $class->Unavailable_lecture_rooms }}</td>
+
             <td>
                 <form action="{{route('class.destroy',$class->id)}}" method="post">
                     @csrf

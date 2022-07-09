@@ -37,7 +37,7 @@
 
   .formContainer {
     width: 500px;
-    padding: 20px;
+    padding: 10px;
     background-color: #fff;
   }
 
@@ -59,6 +59,7 @@
   .w {
     width: 48%;
   }
+
   .formContainer .btn:hover,
   .openButton:hover {
     opacity: 1;
@@ -93,20 +94,29 @@
   <div class="formPopup" id="popupForm">
     <form action="{{route('course.store')}}" class="formContainer" method="POST">
       @csrf
-      <h2>Add New Course</h2>
+      <h2 class="w-100">Add New Course</h2>
       <label for="name">
         <strong>Name</strong>
       </label>
       <input type="text" id="name" placeholder=" Name" name="name" required>
-      <label for="psw">
+      <label for="course">
         <strong>Course Code</strong>
       </label>
       <input type="text" id="course" placeholder=" Course Code" name="course" required>
-
-      <label for="psw">
+      <div class="d-flex align-items-center">
+        <label for="dept">
+          <strong>Department: </strong>
+        </label>
+        <input type="text" id="dept" class="me-1" placeholder=" Department" name="department" required>
+        <label for="yr">
+          <strong>Sem/Year: </strong>
+        </label>
+        <input type="text" id="yr" placeholder="Semester/Year" name="year" required>
+      </div>
+      <label for="prof">
         <strong>Professor</strong>
       </label>
-      <input type="text" id="pro" placeholder="Professor Name" name="pro" required>
+      <input type="text" id="prof" placeholder="Professor Name" name="pro" required>
       <button type="submit" class="btn btn-info w">Add Course</button>
       <button type="button" class="btn btn-danger w" onclick="closeForm()">Close</button>
     </form>
@@ -127,8 +137,10 @@
   <table class="table table-striped ">
     <tr>
       <th>ID</th>
-      <th>Name</th>
-      <th>course_code</th>
+      <th>Paper Name</th>
+      <th>paper code</th>
+      <th>Department</th>
+      <th>Sem/Year</th>
       <th>professor</th>
       <th>Actions</th>
     </tr>
@@ -142,6 +154,8 @@
       <td>{{$c++ }}</td>
       <td>{{ $course->name }}</td>
       <td>{{ $course->course_code }}</td>
+      <td>{{ $course->department }}</td>
+      <td>{{ $course->semester }}</td>
       <td>{{ $course->professor }}</td>
       <td>
         <form action="{{route('course.destroy',$course->id)}}" method="post">
