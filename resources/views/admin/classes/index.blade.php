@@ -57,6 +57,7 @@
     .drpdwn {
         border-radius: 0;
         background-color: #eee;
+        padding: 12px;
     }
 
     .w {
@@ -100,9 +101,6 @@
             @csrf
             <h5>Add New Class</h5>
             <label for="name">
-                <!-- <strong>Class Name</strong>
-            </label>
-            <input type="text" id="name" placeholder=" " name="classname" required> -->
             <strong>Subject:</strong> <select name="classname" id="name" class="form-control drpdwn m-2">
                     <option value="">Select Course</option>
                     @php
