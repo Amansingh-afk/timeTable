@@ -9,9 +9,7 @@
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-  <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
- -->
- <script src="https://kit.fontawesome.com/6e98be7892.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/6e98be7892.js" crossorigin="anonymous"></script>
 
   <!-- CSS Files -->
   <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
@@ -24,15 +22,15 @@
       <div class="logo">
 
         <a href="" class="simple-text logo-normal">
-          
-<img src="../assets/img/smslogo.png" alt="img" width="300"/>
+
+          <img src="../assets/img/smslogo.png" alt="img" width="300" />
         </a>
       </div>
       <div class="sidebar-wrapper " id="sidebar-wrapper">
         <ul class="nav">
           <li>
             <a href="{{ route('dashboard') }}">
-            <i class="fa-solid fa-bars-staggered"></i>
+              <i class="fa-solid fa-bars-staggered"></i>
               <p>Dashboard</p>
             </a>
           </li>
@@ -44,7 +42,7 @@
           </li>
           <li>
             <a href="{{route('course.index')}}">
-            <i class="fa-solid fa-book-open-reader"></i>
+              <i class="fa-solid fa-book-open-reader"></i>
               <p>Courses</p>
             </a>
           </li>
@@ -56,25 +54,25 @@
           </li>
           <li>
             <a href="{{route('class.index')}}">
-            <i class="fa-solid fa-users-between-lines"></i>
+              <i class="fa-solid fa-users-between-lines"></i>
               <p>Classes</p>
             </a>
           </li>
           <li>
             <a href="{{route('period.index')}}">
-            <i class="fa-solid fa-stopwatch"></i>
+              <i class="fa-solid fa-stopwatch fa-shake"></i>
               <p>Periods</p>
             </a>
           </li>
           <li>
             <a href="">
-            <i class="fa-solid fa-user"></i>
+              <i class="fa-solid fa-user"></i>
               <p>User Account</p>
             </a>
           </li>
           <li class="active-pro">
             <a href="{{ route('logout') }}">
-            <i class="fa-solid fa-power-off"></i>
+              <i class="fa-solid fa-power-off"></i>
               <p>Logout</p>
             </a>
           </li>

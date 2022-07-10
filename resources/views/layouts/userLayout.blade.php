@@ -9,7 +9,7 @@
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/6e98be7892.js" crossorigin="anonymous"></script>
     <!-- CSS Files -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
@@ -28,20 +28,20 @@
             <div class="logo">
 
                 <a href="" class="simple-text logo-normal">
-                    SMS
+                    <img src="../assets/img/smslogo.png" alt="img" width="300" />
                 </a>
             </div>
             <div class="sidebar-wrapper " id="sidebar-wrapper">
                 <ul class="nav">
                     <li>
                         <a href="{{ route('teacher') }}">
-                            <i class="now-ui-icons design_palette"></i>
+                            <i class="fa-solid fa-bars-staggered"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
                     <li class="active-pro">
                         <a href="{{ route('logout') }}">
-                            <i class="now-ui-icons media-1_button-power"></i>
+                            <i class="fa-solid fa-power-off"></i>
                             <p>Logout</p>
                         </a>
                     </li>

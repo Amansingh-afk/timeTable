@@ -30,12 +30,13 @@
         left: 50%;
         top: 10%;
         transform: translate(-50%, 8%);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         z-index: 9;
     }
-  h5{
-    font-weight: 600;
-  }
+
+    h5 {
+        font-weight: 600;
+    }
 
     .formContainer {
         width: 500px;
@@ -106,55 +107,62 @@
             @csrf
             <h5>Add New Class</h5>
             <label for="name">
-            <strong>Subject:</strong> <select name="classname" id="name" class="form-control drpdwn m-2">
+                <strong>Subject:</strong>
+                <select name="classname" id="name" class="form-control drpdwn m-2" required>
                     <option value="">Select Course</option>
                     @php
                     $courses=DB::table('courses')->get();
+                    $periods=DB::table('periods')->get();
                     @endphp
                     @foreach ($courses as $course)
                     <option>{{$course->name}}</option>
                     @endforeach
                 </select>
-            <div class="d-flex align-items-center">
-                <strong>Department:</strong> <select name="department" id="" class="form-control drpdwn m-2">
-                    <option value="">Select Course</option>
-                    @php
-                    $periods=DB::table('periods')->get();
-                    @endphp
-                    @foreach ($courses as $course)
-                    <option>{{$course->course_code}}</option>
-                    @endforeach
-                </select>
-                <strong>Sem: </strong>
-                <input type="text" name="sem" class="form-control mx-2 drpdwn">
-            </div>
-            <div class="d-flex align-items-center">
-                <strong class="text-nowrap ">Start-time</strong> <select name="st" id="" class="form-control drpdwn m-2">
-                    <option value="">Select time</option>
-                    @foreach ($periods as $period)
-                    <option>{{$period->start_time}}</option>
-                    @endforeach
-                </select>
+                <div class="d-flex align-items-center">
+                    <strong>Department:</strong>
+                    <select name="department" id="" class="form-control drpdwn m-2" required>
+                        <option value="">Select Course</option>
+                        @foreach ($courses as $course)
+                        <option>{{$course->department}}</option>
+                        @endforeach
+                    </select>
+                    <strong>Sem: </strong>
+                    <select name="sem" id="" class="form-control drpdwn m-2" required>
+                        <option value="">Select Sem/Year</option>
+                        @foreach ($courses as $course)
+                        <option>{{$course->semester}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="d-flex align-items-center">
+                    <strong class="text-nowrap ">Start-time</strong>
+                    <select name="st" id="" class="form-control drpdwn m-2" required>
+                        <option value="">Select time</option>
+                        @foreach ($periods as $period)
+                        <option>{{$period->start_time}}</option>
+                        @endforeach
+                    </select>
 
-                <br>
+                    <br>
 
-                <strong class="text-nowrap">End-time</strong> <select name="et" id="" class="form-control drpdwn m-2">
-                    <option value="">Select time</option>
-                    @foreach ($periods as $period)
-                    <option>{{$period->end_time}}</option>
-                    @endforeach
-                </select>
+                    <strong class="text-nowrap">End-time</strong>
+                    <select name="et" id="" class="form-control drpdwn m-2" required>
+                        <option value="">Select time</option>
+                        @foreach ($periods as $period)
+                        <option>{{$period->end_time}}</option>
+                        @endforeach
+                    </select>
 
-            </div>
-            <label for="meet">
-                <strong>Meetings per Week</strong>
-            </label>
-            <input type="text" id="meet" placeholder="" name="meeting" required>
+                </div>
+                <label for="meet">
+                    <strong>Meetings per Week</strong>
+                </label>
+                <input type="text" id="meet" placeholder="" name="meeting" required>
 
-            <div class="d-flex">
-                <button type="submit" class="btn btn-info w">Add Class</button>
-                <button type="button" class="btn btn-danger w" onclick="closeForm()">Close</button>
-            </div>
+                <div class="d-flex">
+                    <button type="submit" class="btn btn-info w">Add Class</button>
+                    <button type="button" class="btn btn-danger w" onclick="closeForm()">Close</button>
+                </div>
         </form>
     </div>
 </div>
@@ -164,7 +172,7 @@
     <table class="table table-striped">
         <tr>
             <th>ID</th>
-            <th>Name</th>
+            <th style="width: 250px;">Paper Name</th>
             <th>Department</th>
             <th>Semester</th>
             <th>Start time</th>
