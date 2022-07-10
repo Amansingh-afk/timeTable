@@ -209,7 +209,6 @@
         @endforeach
 
     </table>
-    {{-- {!! $teachers->links() !!} --}}
 
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -222,4 +221,6 @@
         }
     </script>
 </div>
+
+{{ $classes->links() }}
 @endsection

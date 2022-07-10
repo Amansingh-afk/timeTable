@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('emali');
-            $table->string('courses');
-            $table->string('unavailable_periods');
+            $table->json('courses');
+            $table->json('unavailable_periods');
             $table->timestamps();
         });
     }

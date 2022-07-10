@@ -151,6 +151,6 @@
     @endforeach
 
   </table>
-  {{-- {!! $teachers->links() !!} --}}
+  { $period->links() }}
 </div>
 @endsection

@@ -14,17 +14,6 @@ class CoursesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function index()
-    // {
-    //     // return "We in index";
-    //     $courses = Courses::all();
-    //     $data = compact('courses');
-    //     return view('admin.courses.index')->with($data);
-
-
-    //     // return view('courses.index')->with($data);
-
-    // }
     public function index(Request $request)
     {
         // $rooms = Room::all();
@@ -40,7 +29,7 @@ class CoursesController extends Controller
                 }]
             ])
                 ->orderBy("id","desc")
-                ->paginate(20);
+                ->paginate(8);
         // $data = compact('rooms');
         return view('admin.courses.index',compact('courses'))
         ->with('i',(request()->input('page',1) - 1 ) * 5);

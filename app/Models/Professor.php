@@ -7,5 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Professor extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'name',
+        'emali',
+        'courses',
+        'unavailable_periods',
+    ];
+
+    protected $casts = [
+        'courses' => 'array',
+        'unavailable_periods' => 'array',
+    ];
 }

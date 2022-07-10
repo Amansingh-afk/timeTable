@@ -29,7 +29,7 @@ class ProfessorController extends Controller
                 }]
             ])
                 ->orderBy("id","desc")
-                ->paginate(10);
+                ->paginate(8);
         // $data = compact('rooms');
         return view('admin.professors.index',compact('professor'))
         ->with('i',(request()->input('page',1) - 1 ) * 5);
@@ -61,6 +61,13 @@ class ProfessorController extends Controller
         $professor->unavailable_periods = $req->Un_prid;
         
         $professor->save();
+
+        // if($professor){
+        //     return response()->json([
+        //         'status' => 'success',
+        //         'data' => $professor
+        //     ]);
+        // }
 
         return redirect()->route('professor.index');
         // return "Data inserted";

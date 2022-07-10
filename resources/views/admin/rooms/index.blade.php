@@ -33,7 +33,8 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     z-index: 9;
   }
-  h5{
+
+  h5 {
     font-weight: 600;
   }
 
@@ -58,9 +59,11 @@
     background-color: #ddd;
     outline: none;
   }
+
   .w {
     width: 48%;
   }
+
   .formContainer .btn:hover,
   .openButton:hover {
     opacity: 1;
@@ -174,6 +177,8 @@
 
   </table>
 </div>
-{{-- {!! $teachers->links() !!} --}}
+<!-- {{-- {!! $teachers->links() !!} --}} -->
+
+{{ $rooms->links() }}
 
 @endsection

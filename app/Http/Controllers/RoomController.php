@@ -26,7 +26,7 @@ class RoomController extends Controller
                 }]
             ])
                 ->orderBy("id","desc")
-                ->paginate(5);
+                ->paginate(8);
         // $data = compact('rooms');
         return view('admin.rooms.index',compact('rooms'))
         ->with('i',(request()->input('page',1) - 1 ) * 5);

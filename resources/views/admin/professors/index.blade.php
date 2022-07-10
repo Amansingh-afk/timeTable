@@ -168,6 +168,6 @@
     @endforeach
 
   </table>
-  {{-- {!! $teachers->links() !!} --}}
+  {{ $professor->links() }}
 </div>
 @endsection
