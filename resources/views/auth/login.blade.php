@@ -75,10 +75,11 @@
 </style>
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:700,600' rel='stylesheet' type='text/css'>
 
+<img src="../assets/img/smslogo.png" alt="img" width="300"/>
 <form method="POST" action="{{ route('login') }}">
     @csrf
     <div class="box">
-        <h1>Dashboard</h1>
+        <h1>Account Login</h1>
 
         <input type="email" name="email" placeholder="E-mail" onFocus="field_focus(this, 'email');" onblur="field_blur(this, 'email');" class="email @error('email') is-invalid @enderror" value="{{ old('email') }}" required" />
 

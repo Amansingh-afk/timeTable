@@ -59,16 +59,12 @@
   </div>
 </div>
 <div class="text-center mt-5">
-  <button type="button" class="tableBtn rounded text-dark py-2 px-4">
-    
-  <a href="{{route('timetable.index')}}">
+  <a href="{{route('timetable.index')}}" class="tableBtn rounded text-dark py-2 px-4">
     <i class="fa fa-calendar" aria-hidden="true"></i>
     Generate New Timetable
   </a>
-  </button>
   <p class="tt">
       No Timetable generated yet
-
   </p>
 </div>
 

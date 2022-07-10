@@ -5,7 +5,11 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="m-1">Time Table</div>
+            <div class="text-center">
+                <h5 class="mb-0">
+                    Time Table
+                </h5>
+            </div>
             <table class="table table-bordered text-light text-center">
                 <thead>
                     <th width="125" class="bg-dark">
@@ -20,12 +24,13 @@
                 <tbody>
 
                     @php
-                    $start_time = DB::table('periods')->get();
+                    $time = DB::table('periods')->get();
                     @endphp
-                    @foreach($start_time as $st)
+                    @foreach($time as $st)
                     <tr height="88">
-                        <td width="125" class="bg-dark">
-                            {{$st->start_time}}
+                        <td width="125" class="bg-dark text-nowrap">
+                            {{$st->start_time}}-
+                            {{$st->end_time}}
                         </td>
                     </tr>
                     @endforeach
