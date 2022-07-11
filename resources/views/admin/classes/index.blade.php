@@ -1,80 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
-<style>
-    .openButton {
-        border: none;
-        border-radius: 5px;
-        background-color: #1c87c9;
-        color: white;
-        padding: 10px 20px;
-        cursor: pointer;
-        /* position: fixed; */
-    }
 
-    .search_input {
-        border-radius: 5px;
-        border: 1px solid teal;
-    }
-
-    .loginPopup {
-        position: relative;
-        text-align: start;
-        width: 100%;
-    }
-
-    .formPopup {
-        display: none;
-        position: fixed;
-        border-radius: 10px;
-        left: 50%;
-        top: 10%;
-        transform: translate(-50%, 8%);
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-        z-index: 9;
-    }
-
-    h5 {
-        font-weight: 600;
-    }
-
-    .formContainer {
-        width: 500px;
-        padding: 20px;
-        border-radius: 10px;
-        background-color: #fff;
-    }
-
-    .formContainer input[type=text],
-    .formContainer input[type=password] {
-        width: 100%;
-        padding: 10px;
-        margin: 3px 0 10px 0;
-        border: none;
-        background: #eee;
-    }
-
-    .formContainer input[type=text]:focus,
-    .formContainer input[type=password]:focus {
-        background-color: #ddd;
-        outline: none;
-    }
-
-    .drpdwn {
-        border-radius: 0;
-        background-color: #eee;
-        padding: 12px;
-    }
-
-    .w {
-        width: 49%;
-    }
-
-    .formContainer .btn:hover,
-    .openButton:hover {
-        opacity: 1;
-    }
-</style>
+<link href="../assets/css/custom.css" rel="stylesheet" />
 
 <div class="container-fluid w-100 bg-dark">
     <a class="navbar-brand px-4 text-light">Classes</a>
@@ -199,8 +127,12 @@
                     @csrf
                     @method('DELETE')
 
-                    <a href="{{route('class.edit',$class->id)}}" class="btn btn-success">Edit</a>
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <a href="{{route('class.edit',$class->id)}}" class="btn btn-success">
+                        <i class="fa-solid fa-marker" aria-hidden="true"></i>
+                    </a>
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                    </button>
                 </form>
             </td>
         </tr>

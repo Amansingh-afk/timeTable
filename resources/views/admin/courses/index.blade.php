@@ -2,82 +2,9 @@
 
 @section('content')
 
-<style>
-  .openButton {
-    border: none;
-    border-radius: 5px;
-    background-color: #1c87c9;
-    color: white;
-    padding: 10px 20px;
-    cursor: pointer;
-    /* position: fixed; */
-  }
 
-  .drpdwn {
-    border-radius: 0;
-    background-color: #eee;
-    padding: 12px;
-  }
+<link href="../assets/css/custom.css" rel="stylesheet" />
 
-  .search_input {
-    border-radius: 5px;
-    border: 1px solid teal;
-  }
-
-
-  .loginPopup {
-    position: relative;
-    text-align: start;
-    width: 100%;
-  }
-
-  .formPopup {
-    display: none;
-    position: fixed;
-    left: 50%;
-    top: 12%;
-    transform: translate(-50%, 5%);
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    z-index: 9;
-    border-radius: 10px;
-  }
-
-  h5 {
-    font-weight: 600;
-  }
-
-  .formContainer {
-    width: 500px;
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 10px;
-  }
-
-  .formContainer input[type=text],
-  .formContainer input[type=password] {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0 20px 0;
-    border: none;
-    background: #eee;
-  }
-
-  .formContainer input[type=text]:focus,
-  .formContainer input[type=password]:focus {
-    background-color: #ddd;
-    outline: none;
-  }
-
-  .w {
-    width: 48%;
-  }
-
-  .formContainer .btn:hover,
-  .openButton:hover {
-    opacity: 1;
-  }
-</style>
 <div class="container-fluid w-100 bg-dark">
   <a class="navbar-brand px-4 text-light">Courses</a>
 </div>
@@ -181,8 +108,12 @@
           @csrf
           @method('DELETE')
 
-          <a href="{{route('course.edit',$course->id)}}" class="btn btn-success">Edit</a>
-          <button type="submit" class="btn btn-danger">Delete</button>
+          <a href="{{route('course.edit',$course->id)}}" class="btn btn-success">
+            <i class="fa-solid fa-marker" aria-hidden="true"></i>
+          </a>
+          <button type="submit" class="btn btn-danger">
+            <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+          </button>
         </form>
       </td>
     </tr>
