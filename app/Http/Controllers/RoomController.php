@@ -6,6 +6,7 @@ use App\Models\Room;
 use App\Http\Requests\StoreRoomRequest;
 use App\Http\Requests\UpdateRoomRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RoomController extends Controller
 {
@@ -119,5 +120,32 @@ class RoomController extends Controller
         $rooms=Room::findorfail($room);
         $rooms->delete();
         return redirect()->route('room.index');
+    }
+    
+    function action(Request $request)
+    {
+        return $request->all();
+    	if($request->ajax())
+    	{
+    		if($request->action == 'edit')
+    		{
+    			$data = array(
+    				'name'	=>	$request->name,
+    				'capacity'		=>	$request->cap,
+    				'type'		=>	$request->cType,
+                    'isActive' => $request->status,
+    			);
+    			DB::table('rooms')
+    				->where('id', $request->id)
+    				->update($data);
+    		}
+    		if($request->action == 'delete')
+    		{
+    			DB::table('rooms')
+    				->where('id', $request->id)
+    				->delete();
+    		}
+    		return response()->json($request);
+    	}
     }
 }

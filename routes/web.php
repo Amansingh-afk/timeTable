@@ -40,6 +40,9 @@ Route::get('admin/dashboard', [HomeController::class, 'dashboard'])->name('dashb
 Route::get('logout', [HomeController::class, 'logout'])->name('logout');
 
 
+Route::post('room/action', [RoomController::class, 'action'])->name('room.action');
+
+
 //Dashboards routes -->
 Route::resource('room',RoomController :: class);
 
