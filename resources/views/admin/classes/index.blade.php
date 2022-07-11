@@ -106,7 +106,6 @@
         <form action="{{route('class.store')}}" class="formContainer" method="POST">
             @csrf
             <h5>Add New Class</h5>
-            <label for="name">
                 <strong>Subject:</strong>
                 <select name="classname" id="name" class="form-control drpdwn m-2" required>
                     <option value="">Select Course</option>

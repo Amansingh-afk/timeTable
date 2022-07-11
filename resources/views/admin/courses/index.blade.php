@@ -13,6 +13,12 @@
     /* position: fixed; */
   }
 
+  .drpdwn {
+    border-radius: 0;
+    background-color: #eee;
+    padding: 12px;
+  }
+
   .search_input {
     border-radius: 5px;
     border: 1px solid teal;
@@ -36,8 +42,8 @@
     z-index: 9;
     border-radius: 10px;
   }
-  
-  h5{
+
+  h5 {
     font-weight: 600;
   }
 
@@ -101,7 +107,7 @@
   <div class="formPopup" id="popupForm">
     <form action="{{route('course.store')}}" class="formContainer" method="POST">
       @csrf
-      <h5 >Add New Course</h5>
+      <h5>Add New Course</h5>
       <label for="name">
         <strong>Name</strong>
       </label>
@@ -120,10 +126,16 @@
         </label>
         <input type="text" id="yr" placeholder="Semester/Year" name="year" required>
       </div>
-      <label for="prof">
-        <strong>Professor</strong>
-      </label>
-      <input type="text" id="prof" placeholder="Professor Name" name="pro" required>
+      @php
+      $professors = DB::table('professors')->get();
+      @endphp
+      <strong>Professor</strong>
+      <select name="pro" id="" class="form-control drpdwn m-2" required>
+        <option value="">Select Course</option>
+        @foreach ($professors as $prof)
+        <option>{{$prof->name}}</option>
+        @endforeach
+      </select>
       <button type="submit" class="btn btn-info w">Add Course</button>
       <button type="button" class="btn btn-danger w" onclick="closeForm()">Close</button>
     </form>

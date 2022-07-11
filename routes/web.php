@@ -31,11 +31,11 @@ Auth::routes();
 // Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
 
 
-Route::get('student', [HomeController::class, 'isStudent'])->name('student');
+Route::get('student/dashboard', [HomeController::class, 'isStudent'])->name('student');
 
-Route::get('teacher', [HomeController::class, 'isTeacher'])->name('teacher');
+Route::get('teacher/dashboard', [HomeController::class, 'isTeacher'])->name('teacher');
 
-Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard'); 
+Route::get('admin/dashboard', [HomeController::class, 'dashboard'])->name('dashboard')->middleware('is_admin'); 
 
 Route::get('logout', [HomeController::class, 'logout'])->name('logout');
 
