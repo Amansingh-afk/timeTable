@@ -105,7 +105,7 @@
     @foreach($rooms as $room)
     <tr>
       <td>{{ $c++ }}</td>
-      <td>{{ $room->name }}</td>
+      <td contenteditable="true">{{ $room->name }}</td>
       <td>{{ $room->capacity }}</td>
       <td>{{ $room->type }}</td>
       <td>{{ $room->isActive }}</td>
@@ -165,6 +165,6 @@
 </script>
 
 
-{{ $rooms->links() }}
+<!-- {{ $rooms->links() }} -->
      
 @endsection

@@ -112,6 +112,6 @@
     @endforeach
 
   </table>
-  {{ $professor->links() }}
+  <!-- {{ $professor->links() }} -->
 </div>
 @endsection
