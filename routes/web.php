@@ -54,6 +54,6 @@ Route::resource('class',ClassesController::class);
 
 Route::resource('period',PeriodController::class);
 
-
+// TimeTable generation -- routes
 Route::resource('timetable',TimetableController::class);
 

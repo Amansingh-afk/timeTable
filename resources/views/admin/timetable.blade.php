@@ -22,10 +22,6 @@
                     @endforeach
                 </thead>
                 <tbody>
-
-                    @php
-                    $time = DB::table('periods')->get();
-                    @endphp
                     @foreach($time as $st)
                     <tr height="88">
                         <td width="125" class="bg-dark text-nowrap">
