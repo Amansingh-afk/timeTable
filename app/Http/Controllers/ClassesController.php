@@ -27,6 +27,7 @@ class ClassesController extends Controller
         ])
             ->orderBy("id", "desc")
             ->paginate(8);
+            // return response()->json($classes);
         return view('admin.classes.index', compact('classes'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }

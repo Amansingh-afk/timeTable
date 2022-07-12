@@ -28,6 +28,11 @@
                             {{$st->start_time}}-
                             {{$st->end_time}}
                         </td>
+                        @foreach($objT as $q => $value)
+                        <td width="125" class="text-dark">
+                            {{$q}}
+                        </td>
+                        @endforeach
                     </tr>
                     @endforeach
                 </tbody>
