@@ -4,10 +4,6 @@
 <link href="../assets/css/custom.css" rel="stylesheet" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>       
 
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
 <div class="container-fluid w-100 bg-dark">
   <a class="navbar-brand px-4 text-light">
     Rooms
@@ -87,14 +83,13 @@
 </script>
 <div class="px-4">
   @csrf
-  <table id="editable" class="table table-striped">
+  <table class="table table-striped">
     <tr>
       <th>ID</th>
       <th>Room Code</th>
       <th>Capacity</th>
       <th>Room Type</th>
       <th>Status</th>
-      <!-- <th>Remark</th> -->
       <th>Actions</th>
     </tr>
 
@@ -109,7 +104,6 @@
       <td>{{ $room->capacity }}</td>
       <td>{{ $room->type }}</td>
       <td>{{ $room->isActive }}</td>
-      <!-- <td>{{ $room->remarks }}</td> -->
       <td>
         <form action="{{route('room.destroy',$room->id)}}" method="post">
           @csrf
@@ -129,40 +123,6 @@
 
   </table>
 </div>
-<script src="assets/js/tableedit.js"></script>
-<script type="text/javascript">
-  $(document).ready(function() {
-    console.log('working');
-
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-Token': $("input[name=_token]").val()
-      }
-    });
-
-    $('#editable').Tabledit({
-      url: '{{ route("room.action") }}',
-      dataType: "json",
-      columns: {
-        identifier: [0, 'id'],
-        editable: [
-          [1, 'name'],
-          [2, 'capacity'],
-          [3, 'type'],
-          [4, 'isActive'],
-        ]
-      },
-      restoreButton: false,
-      onSuccess: function(data, textStatus, jqXHR) {
-        console.log(data);
-        if (data.action == 'delete') {
-          $('#' + data.id).remove();
-        }
-      }
-    });
-
-  });
-</script>
 
 
 <!-- {{ $rooms->links() }} -->

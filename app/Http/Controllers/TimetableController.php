@@ -12,8 +12,8 @@ class TimetableController extends Controller
 {
     public function index(Request $request)
     {
-        $teacher = array();
-        // $objT =  array();
+        $teacher = (object) array();
+        $objT =  array();
         $weekDays = Classes::WEEK_DAYS;
         $depart = $request->department;
         $semester = $request->sem;
@@ -21,26 +21,11 @@ class TimetableController extends Controller
         $time = DB::table('periods')->get();
 
         $classDetails = DB::table('classes')
-            ->where('department', $depart)
-            ->where('semester', $semester)->get();
+            ->select('classes.name','classes.Meeting_per_week','courses.professor')
+            ->join('courses','classes.name','=','courses.name')
+            ->where('classes.department', $depart)
+            ->where('classes.semester', $semester)->get();
 
-        foreach ($classDetails as $key) {
-            $courseDetails = $key->name;
-
-            $courseProfName = DB::table('courses')
-                ->where('name', $courseDetails)->get();
-
-            // $teacher = (object) $teacher;
-            // $objT[] = $courseProfName;
-            $objT = json_decode($courseProfName);
-            // return response()->json($objT);
-        }
-
-        // return response()->json($professorName);
-        // return response()->json($courseProfName);
-        // return response()->json($classDetails);
-        // return response()->json($objT);
-
-        return view('admin.timetable', compact('weekDays', 'time', 'classDetails', 'objT'));
+        return view('admin.timetable', compact('weekDays', 'time', 'classDetails'));
     }
 }

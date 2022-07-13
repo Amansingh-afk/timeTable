@@ -122,5 +122,5 @@
 
   </table>
 </div>
-{{ $courses->links()}}
+<!-- {{ $courses->links()}} -->
 @endsection

@@ -29,7 +29,7 @@ class CoursesController extends Controller
                 }]
             ])
                 ->orderBy("id","desc")
-                ->paginate(8);
+                ->paginate(50);
         // $data = compact('rooms');
         return view('admin.courses.index',compact('courses'))
         ->with('i',(request()->input('page',1) - 1 ) * 5);

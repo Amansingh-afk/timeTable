@@ -24,13 +24,14 @@
                 <tbody>
                     @foreach($time as $st)
                     <tr height="88">
-                        <td width="125" class="bg-dark text-nowrap">
+                        <td width="110" class="bg-dark text-nowrap">
                             {{$st->start_time}}-
                             {{$st->end_time}}
                         </td>
-                        @foreach($objT as $q => $value)
-                        <td width="125" class="text-dark">
-                            {{$q}}
+                        @foreach($classDetails as $class)
+                        <td width="140" class="text-dark">
+                            {{$class->name}}
+                            <p class="text-danger">{{$class->professor}}</p>
                         </td>
                         @endforeach
                     </tr>
