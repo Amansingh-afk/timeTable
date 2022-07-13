@@ -28,7 +28,12 @@
                             {{$st->start_time}}-
                             {{$st->end_time}}
                         </td>
-                        @foreach($classDetails as $class)
+                        @foreach($classDetails as $i => $class)
+                        @if($i == 1)
+                        <td class="text-dark">
+                            LUNCH
+                        </td>
+                        @endif
                         <td width="140" class="text-dark">
                             {{$class->name}}
                             <p class="text-danger">{{$class->professor}}</p>
