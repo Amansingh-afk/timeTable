@@ -57,7 +57,7 @@ class HomeController extends Controller
 
 
         $courses = DB::table('courses')
-            ->select('courses.department', 'courses.semester')
+            ->select('courses.department')
             ->distinct()
             ->get();
 

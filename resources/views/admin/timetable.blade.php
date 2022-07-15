@@ -3,7 +3,8 @@
 @section('content')
 <style>
     .time {
-        font-size: 10px;;
+        font-size: 10px;
+        ;
     }
 </style>
 <div class="container">
@@ -28,19 +29,31 @@
                 </thead>
                 <tbody>
                     @foreach($weekDays as $day)
+
                     <tr height="88">
                         <td class="bg-dark">
                             {{ $day }}
                         </td>
                         @foreach($classDetails as $i => $class)
-                        @if($i == 2)
+                        @if($i == $offDay)
                         <td class="text-dark">
-                            LUNCH
+
+                            @if($day == "Sunday")
+                            <p class="text-success"> {{$day}} </p>
+                            @else
+                                <p class="text-info">LUNCH</p>
+                            @endif
                         </td>
                         @endif
                         <td width="140" class="text-dark">
+
+                            @if($day == "Sunday")
+                            <p class="text-success"> {{$day}} </p>
+                            @else
                             {{$class->name}}
                             <p class="text-danger">{{$class->professor}}</p>
+
+                            @endif
                         </td>
                         @endforeach
                     </tr>

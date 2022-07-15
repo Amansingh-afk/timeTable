@@ -6,7 +6,6 @@ use App\Models\Classes;
 use App\Models\Professor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use SplSubject;
 
 class TimetableController extends Controller
 {
@@ -16,6 +15,7 @@ class TimetableController extends Controller
         $depart = $request->department;
         $semester = $request->sem;
 
+        $offDay = 2;
         $time = DB::table('periods')->get();
 
         $classDetails = DB::table('classes')
@@ -28,7 +28,7 @@ class TimetableController extends Controller
 		// return response()->json($classDetails);
 
             
-        return view('admin.timetable', compact('weekDays', 'time', 'classDetails', 'depart', 'semester'));
+        return view('admin.timetable', compact('weekDays', 'time', 'classDetails', 'offDay', 'depart', 'semester'));
     }
     function rowCheck(){
         
