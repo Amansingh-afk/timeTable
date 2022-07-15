@@ -12,8 +12,6 @@ class TimetableController extends Controller
 {
     public function index(Request $request)
     {
-        $teacher = (object) array();
-        $objT =  array();
         $weekDays = Classes::WEEK_DAYS;
         $depart = $request->department;
         $semester = $request->sem;
@@ -25,7 +23,14 @@ class TimetableController extends Controller
             ->join('courses','classes.name','=','courses.name')
             ->where('classes.department', $depart)
             ->where('classes.semester', $semester)->get();
+             
+        //    $classDetails= $this->finalAnswer($classDetailsQ);
+		// return response()->json($classDetails);
 
-        return view('admin.timetable', compact('weekDays', 'time', 'classDetails'));
+            
+        return view('admin.timetable', compact('weekDays', 'time', 'classDetails', 'depart', 'semester'));
+    }
+    function rowCheck(){
+        
     }
 }

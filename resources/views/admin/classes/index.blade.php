@@ -37,10 +37,6 @@
                 <strong>Subject:</strong>
                 <select name="classname" id="name" class="form-control drpdwn m-2" required>
                     <option value="">Select Course</option>
-                    @php
-                    $courses=DB::table('courses')->get();
-                    $periods=DB::table('periods')->get();
-                    @endphp
                     @foreach ($courses as $course)
                     <option>{{$course->name}}</option>
                     @endforeach
@@ -49,14 +45,14 @@
                     <strong>Department:</strong>
                     <select name="department" id="" class="form-control drpdwn m-2" required>
                         <option value="">Select Course</option>
-                        @foreach ($courses as $course)
+                        @foreach ($courseDept as $course)
                         <option>{{$course->department}}</option>
                         @endforeach
                     </select>
                     <strong>Sem: </strong>
                     <select name="sem" id="" class="form-control drpdwn m-2" required>
                         <option value="">Select Sem/Year</option>
-                        @foreach ($courses as $course)
+                        @foreach ($courseSem as $course)
                         <option>{{$course->semester}}</option>
                         @endforeach
                     </select>

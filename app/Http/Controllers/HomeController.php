@@ -8,6 +8,7 @@ use App\Models\Professor;
 use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 
@@ -20,7 +21,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('Auth');
     }
 
     /**
@@ -30,43 +31,76 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('auth.login');
+        // return view('auth.login');
     }
-    public function isStudent(){
+    public function isStudent()
+    {
 
-        
+
         $roomsCount = Room::count();
         $coursesCount = Courses::count();
         $professorsCount = Professor::count();
         $classesCount = Classes::count();
 
-        return view('user.student', compact('roomsCount','coursesCount','professorsCount','classesCount'));
+
+        if (auth()->user()->is_admin == 3) {
+            return view('user.student', compact('roomsCount', 'coursesCount', 'professorsCount', 'classesCount'));
+        }
+        echo "Sign-in as Student ..";
     }
-    public function dashboard()
+    public function dashboard(Request $request)
     {
         $roomsCount = Room::count();
         $coursesCount = Courses::count();
         $professorsCount = Professor::count();
         $classesCount = Classes::count();
-    
-            return view('admin.dashboard', compact('roomsCount','coursesCount','professorsCount','classesCount'));
-        
-  
+
+
+        $courses = DB::table('courses')
+            ->select('courses.department', 'courses.semester')
+            ->distinct()
+            ->get();
+
+        // $depart = $request->department;
+
+        $courseSem = DB::table('courses')
+            ->select('courses.semester')
+            ->distinct()
+            ->get();
+
+        $professors = DB::table('professors')->get();
+
+        return view('admin.dashboard', compact(
+            'roomsCount',
+            'coursesCount',
+            'professorsCount',
+            'classesCount',
+            'courses',
+            'courseSem',
+            'professors'
+        ));
     }
     public function isTeacher()
     {
-        
+
         $roomsCount = Room::count();
         $coursesCount = Courses::count();
         $professorsCount = Professor::count();
         $classesCount = Classes::count();
 
-        return view('user.teacher', compact('roomsCount','coursesCount','professorsCount','classesCount'));
+
+        if (auth()->user()->is_admin == 2) {
+
+            return view('user.teacher', compact('roomsCount', 'coursesCount', 'professorsCount', 'classesCount'));
+        }
+            echo "Sign_in as Teacher..";
     }
-    public function logout() {
+
+    public function logout()
+    {
         Session::flush();
         Auth::logout();
-  
+
         return Redirect('login');
     }
 }

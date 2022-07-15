@@ -17,21 +17,26 @@ class ProfessorController extends Controller
     public function index(Request $request)
     {
         // $rooms = Room::all();
-            $professor = professor::where([
-                ['name','!=', NULL],['courses','!=',NULL],
-                [function($query) use ($request) {
-                    if(($term = $request->term)){
-                        $query->orWhere('name','LIKE', '%'. $term . '%')->get();
-                    }
-                    if(($term = $request->term)){
-                        $query->orWhere('courses','LIKE', '%'. $term . '%')->get();
-                    }
-                }]
-            ])
-                ->orderBy("id","desc")
-                ->paginate(8);
-        return view('admin.professors.index',compact('professor'))
-        ->with('i',(request()->input('page',1) - 1 ) * 5);
+        $professor = professor::where([
+            ['name', '!=', NULL], ['courses', '!=', NULL],
+            [function ($query) use ($request) {
+                if (($term = $request->term)) {
+                    $query->orWhere('name', 'LIKE', '%' . $term . '%')->get();
+                }
+                if (($term = $request->term)) {
+                    $query->orWhere('courses', 'LIKE', '%' . $term . '%')->get();
+                }
+            }]
+        ])
+            ->orderBy("id", "desc")
+            ->paginate(8);
+
+        if (auth()->user()->is_admin == 1) {
+
+            return view('admin.professors.index', compact('professor'))
+                ->with('i', (request()->input('page', 1) - 1) * 5);
+        }
+        echo "Sign-in as Admin to access";
     }
 
 
@@ -58,15 +63,8 @@ class ProfessorController extends Controller
         $professor->emali = $req->email;
         $professor->courses = $req->course;
         $professor->unavailable_periods = $req->Un_prid;
-        
-        $professor->save();
 
-        // if($professor){
-        //     return response()->json([
-        //         'status' => 'success',
-        //         'data' => $professor
-        //     ]);
-        // }
+        $professor->save();
 
         return redirect()->route('professor.index');
         // return "Data inserted";
@@ -91,8 +89,8 @@ class ProfessorController extends Controller
      */
     public function edit($professor)
     {
-        $customer=Professor ::findorfail($professor);
-        return view('admin.professors.edit',compact('customer'));
+        $customer = Professor::findorfail($professor);
+        return view('admin.professors.edit', compact('customer'));
     }
 
     /**
@@ -104,13 +102,13 @@ class ProfessorController extends Controller
      */
     public function update(UpdateProfessorRequest $request,  $professor)
     {
-        $professor1=Professor::findorfail($professor);
-        $professor1->name=$request->name;
-        $professor1->emali=$request->email;
-        $professor1->courses=$request->course;
-        $professor1->unavailable_periods=$request->Un_prid;
+        $professor1 = Professor::findorfail($professor);
+        $professor1->name = $request->name;
+        $professor1->emali = $request->email;
+        $professor1->courses = $request->course;
+        $professor1->unavailable_periods = $request->Un_prid;
         $professor1->update();
-        return redirect()->route('professor.index'); 
+        return redirect()->route('professor.index');
     }
 
     /**
@@ -119,9 +117,9 @@ class ProfessorController extends Controller
      * @param  \App\Models\Professor  $professor
      * @return \Illuminate\Http\Response
      */
-    public function destroy( $professor)
+    public function destroy($professor)
     {
-        $professor1=Professor::findorfail($professor);
+        $professor1 = Professor::findorfail($professor);
         $professor1->delete();
         return redirect()->route('professor.index');
     }

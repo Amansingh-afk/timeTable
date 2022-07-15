@@ -90,7 +90,7 @@ class CoursesSeeder extends Seeder
                 'name' => 'Financial Accounting & Management',
                 'course_code' => 'BCA-S109',
                 'department' => 'BCA',
-                'semester' => 'I9',
+                'semester' => 'II',
                 'professor' => 'DR. SANTOSH KUMAR'
             ],
             [

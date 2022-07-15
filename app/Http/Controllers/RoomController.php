@@ -18,19 +18,23 @@ class RoomController extends Controller
     public function index(Request $request)
     {
         // $rooms = Room::all();
-            $rooms = Room::where([
-                ['name','!=', NULL],
-                [function($query) use ($request) {
-                    if(($term = $request->term)){
-                        $query->orWhere('name','LIKE', '%'. $term . '%')->get();
-                    }
-                }]
-            ])
-                ->orderBy("id","desc")
-                ->paginate(50);
-        // $data = compact('rooms');
-        return view('admin.rooms.index',compact('rooms'))
-        ->with('i',(request()->input('page',1) - 1 ) * 5);
+        $rooms = Room::where([
+            ['name', '!=', NULL],
+            [function ($query) use ($request) {
+                if (($term = $request->term)) {
+                    $query->orWhere('name', 'LIKE', '%' . $term . '%')->get();
+                }
+            }]
+        ])
+            ->orderBy("id", "desc")
+            ->paginate(50);
+
+        if (auth()->user()->is_admin == 1) {
+
+            return view('admin.rooms.index', compact('rooms'))
+                ->with('i', (request()->input('page', 1) - 1) * 5);
+        }
+        echo "Sign-in as Admin to access";
     }
 
     /**
@@ -55,10 +59,10 @@ class RoomController extends Controller
         $rooms = new Room;
         $rooms->name = $req->name;
         $rooms->capacity = $req->cap;
-        $rooms->type=$req->cType;
-        $rooms->isActive=$req->status;
+        $rooms->type = $req->cType;
+        $rooms->isActive = $req->status;
         // $rooms->remarks=$req->remark;
-        
+
         $rooms->save();
 
         return redirect()->route('room.index');
@@ -74,8 +78,6 @@ class RoomController extends Controller
      */
     public function show(Room $room)
     {
-       
-
     }
 
     /**
@@ -86,8 +88,8 @@ class RoomController extends Controller
      */
     public function edit($room)
     {
-        $customer=Room::findorfail($room);
-        return view('admin.rooms.edit',compact('customer'));
+        $customer = Room::findorfail($room);
+        return view('admin.rooms.edit', compact('customer'));
     }
 
     /**
@@ -99,14 +101,14 @@ class RoomController extends Controller
      */
     public function update(UpdateRoomRequest $request, $c)
     {
-        $room=Room::findorfail($c);
-        $room->name=$request->name;
-        $room->capacity=$request->cap;
-        $room->type=$request->cType;
-        $room->isActive=$request->status;
+        $room = Room::findorfail($c);
+        $room->name = $request->name;
+        $room->capacity = $request->cap;
+        $room->type = $request->cType;
+        $room->isActive = $request->status;
         // $room->remarks=$request->remark;
         $room->update();
-        return redirect()->route('room.index');   
+        return redirect()->route('room.index');
     }
 
     /**
@@ -117,35 +119,32 @@ class RoomController extends Controller
      */
     public function destroy($room)
     {
-        $rooms=Room::findorfail($room);
+        $rooms = Room::findorfail($room);
         $rooms->delete();
         return redirect()->route('room.index');
     }
-    
+
     function action(Request $request)
     {
         return $request->all();
-    	if($request->ajax())
-    	{
-    		if($request->action == 'edit')
-    		{
-    			$data = array(
-    				'name'	=>	$request->name,
-    				'capacity'		=>	$request->cap,
-    				'type'		=>	$request->cType,
+        if ($request->ajax()) {
+            if ($request->action == 'edit') {
+                $data = array(
+                    'name'    =>    $request->name,
+                    'capacity'        =>    $request->cap,
+                    'type'        =>    $request->cType,
                     'isActive' => $request->status,
-    			);
-    			DB::table('rooms')
-    				->where('id', $request->id)
-    				->update($data);
-    		}
-    		if($request->action == 'delete')
-    		{
-    			DB::table('rooms')
-    				->where('id', $request->id)
-    				->delete();
-    		}
-    		return response()->json($request);
-    	}
+                );
+                DB::table('rooms')
+                    ->where('id', $request->id)
+                    ->update($data);
+            }
+            if ($request->action == 'delete') {
+                DB::table('rooms')
+                    ->where('id', $request->id)
+                    ->delete();
+            }
+            return response()->json($request);
+        }
     }
 }

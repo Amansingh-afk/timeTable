@@ -1,13 +1,17 @@
 @extends('layouts.admin')
 
 @section('content')
-
+<style>
+    .time {
+        font-size: 10px;;
+    }
+</style>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="text-center">
                 <h5 class="mb-0">
-                    Time Table
+                    Time Table for {{$depart}} {{$semester}}
                 </h5>
             </div>
             <table class="table table-bordered text-light text-center">
@@ -15,21 +19,21 @@
                     <th width="125" class="bg-dark">
                         Time
                     </th>
-                    @foreach($weekDays as $day)
-                    <th class="bg-secondary">
-                        {{ $day }}
+                    @foreach($time as $st)
+                    <th width="100" class="bg-secondary time ">
+                        {{$st->start_time}}
+                        <!-- {{$st->end_time}} -->
                     </th>
                     @endforeach
                 </thead>
                 <tbody>
-                    @foreach($time as $st)
+                    @foreach($weekDays as $day)
                     <tr height="88">
-                        <td width="110" class="bg-dark text-nowrap">
-                            {{$st->start_time}}-
-                            {{$st->end_time}}
+                        <td class="bg-dark">
+                            {{ $day }}
                         </td>
                         @foreach($classDetails as $i => $class)
-                        @if($i == 1)
+                        @if($i == 2)
                         <td class="text-dark">
                             LUNCH
                         </td>

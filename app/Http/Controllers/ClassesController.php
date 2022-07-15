@@ -7,6 +7,7 @@ use App\Http\Requests\StoreClassesRequest;
 use App\Http\Requests\UpdateClassesRequest;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ClassesController extends Controller
 {
@@ -26,10 +27,27 @@ class ClassesController extends Controller
             }]
         ])
             ->orderBy("id", "desc")
-            ->paginate(8);
-            // return response()->json($classes);
-        return view('admin.classes.index', compact('classes'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+            ->paginate(50);
+        $courses = DB::table('courses')->get();
+        $courseDept = DB::table('courses')
+            ->select('department')
+            ->distinct()
+            ->get();
+
+        $courseSem = DB::table('courses')
+            ->select('courses.semester')
+            ->distinct()
+            ->get();
+        $periods = DB::table('periods')->get();
+
+
+
+        if (auth()->user()->is_admin == 1) {
+
+            return view('admin.classes.index', compact('classes', 'courses', 'courseDept', 'courseSem', 'periods'))
+                ->with('i', (request()->input('page', 1) - 1) * 5);
+        }
+        echo "Sign-in as Admin to access";
     }
 
 
@@ -110,7 +128,7 @@ class ClassesController extends Controller
         $class->Meeting_per_week = $request->meeting;
 
         $class->update();
-        
+
         return redirect()->route('class.index');
     }
 
@@ -124,7 +142,7 @@ class ClassesController extends Controller
     {
         $classes = classes::findorfail($classes);
         $classes->delete();
-        
+
         return redirect()->route('class.index');
     }
 }

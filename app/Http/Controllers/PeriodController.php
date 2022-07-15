@@ -18,11 +18,12 @@ class PeriodController extends Controller
     {
         $period = period::all();
 
-        // echo "<pre>";
-        // print_r($data->toArray());
-
         $data = compact('period');
-        return view('admin.Periods.index')->with($data);
+
+        if (auth()->user()->is_admin == 1) {
+            return view('admin.Periods.index')->with($data);
+        }
+        echo "Sign-in as Admin to access";
     }
     /**
      * Show the form for creating a new resource.
@@ -72,10 +73,10 @@ class PeriodController extends Controller
      * @param  \App\Models\period  $period
      * @return \Illuminate\Http\Response
      */
-    public function edit( $period)
+    public function edit($period)
     {
-        $customer=period::findorfail($period);
-        return view('admin.periods.edit',compact('customer'));
+        $customer = period::findorfail($period);
+        return view('admin.periods.edit', compact('customer'));
     }
 
     /**
@@ -87,13 +88,13 @@ class PeriodController extends Controller
      */
     public function update(UpdateperiodRequest $req,  $period)
     {
-        $period=period::findorfail($period);
+        $period = period::findorfail($period);
         $period->start_time = $req->start;
         $period->end_time = $req->end;
         $period->AM_PM = $req->time;
         $period->period_number = $req->periodRank;
         $period->update();
-        return redirect()->route('period.index'); 
+        return redirect()->route('period.index');
     }
 
     /**
@@ -102,9 +103,9 @@ class PeriodController extends Controller
      * @param  \App\Models\period  $period
      * @return \Illuminate\Http\Response
      */
-    public function destroy( $period)
+    public function destroy($period)
     {
-        $period=period::findorfail($period);
+        $period = period::findorfail($period);
         $period->delete();
         return redirect()->route('period.index');
     }

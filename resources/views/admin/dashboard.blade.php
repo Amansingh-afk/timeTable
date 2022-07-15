@@ -114,10 +114,6 @@
       <button class="btn btn-primary" onclick="openFormTwo()">BY PROFESSOR</button>
     </div>
   </div>
-  @php
-  $courses=DB::table('courses')->get();
-  $professors = DB::table('professors')->get();
-  @endphp
   <div class="tt-by-dept  bg-light p-3 mx-auto" id="popupForm">
     <span class="topright bg-primary rounded-circle px-1" onclick="closeForm()">
       <i class="fa-solid fa-x text-light" aria-label="close"></i>
@@ -131,10 +127,10 @@
           <option>{{$course->department}}</option>
           @endforeach
         </select>
-        <strong>Sem: </strong>
+        <strong>Sem/Year: </strong>
         <select name="sem" id="" class="form-control drpdwn m-2" required>
           <option value="">Select Sem/Year</option>
-          @foreach ($courses as $course)
+          @foreach ($courseSem as $course)
           <option>{{$course->semester}}</option>
           @endforeach
         </select>

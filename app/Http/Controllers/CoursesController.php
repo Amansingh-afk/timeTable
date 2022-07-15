@@ -17,22 +17,27 @@ class CoursesController extends Controller
     public function index(Request $request)
     {
         // $rooms = Room::all();
-            $courses = Courses::where([
-                ['name','!=', NULL],['course_code','!=',NULL],
-                [function($query) use ($request) {
-                    if(($term = $request->term)){
-                        $query->orWhere('name','LIKE', '%'. $term . '%')->get();
-                    }
-                    if(($term = $request->term)){
-                        $query->orWhere('course_code','LIKE', '%'. $term . '%')->get();
-                    }
-                }]
-            ])
-                ->orderBy("id","desc")
-                ->paginate(50);
-        // $data = compact('rooms');
-        return view('admin.courses.index',compact('courses'))
-        ->with('i',(request()->input('page',1) - 1 ) * 5);
+        $courses = Courses::where([
+            ['name', '!=', NULL], ['course_code', '!=', NULL],
+            [function ($query) use ($request) {
+                if (($term = $request->term)) {
+                    $query->orWhere('name', 'LIKE', '%' . $term . '%')->get();
+                }
+                if (($term = $request->term)) {
+                    $query->orWhere('course_code', 'LIKE', '%' . $term . '%')->get();
+                }
+            }]
+        ])
+            ->orderBy("id", "desc")
+            ->paginate(50);
+
+
+        if (auth()->user()->is_admin == 1) {
+
+            return view('admin.courses.index', compact('courses'))
+                ->with('i', (request()->input('page', 1) - 1) * 5);
+        }
+        echo "Sign-in as Admin to access";
     }
 
     /**
@@ -88,8 +93,8 @@ class CoursesController extends Controller
      */
     public function edit($courses)
     {
-        $customer=Courses::findorfail($courses);
-        return view('admin.courses.edit',compact('customer'));
+        $customer = Courses::findorfail($courses);
+        return view('admin.courses.edit', compact('customer'));
     }
 
     /**
@@ -101,12 +106,12 @@ class CoursesController extends Controller
      */
     public function update(UpdateCoursesRequest $request,  $courses)
     {
-        $course=Courses::findorfail($courses);
-        $course->name=$request->name;
-        $course->course_code=$request->cap;
+        $course = Courses::findorfail($courses);
+        $course->name = $request->name;
+        $course->course_code = $request->cap;
         $course->department = $request->department;
         $course->semester = $request->year;
-        $course->professor=$request->pro;
+        $course->professor = $request->pro;
         $course->update();
         return redirect()->route('course.index');
     }
@@ -119,7 +124,7 @@ class CoursesController extends Controller
      */
     public function destroy($courses)
     {
-        $course=Courses::findorfail($courses);
+        $course = Courses::findorfail($courses);
         $course->delete();
         return redirect()->route('course.index');
     }
