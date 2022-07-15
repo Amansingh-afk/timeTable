@@ -4,8 +4,10 @@
 <style>
     .time {
         font-size: 10px;
-        ;
-    }
+        }
+        thead{
+            font-size: 10px;
+        }
 </style>
 <div class="container">
     <div class="row">
@@ -17,13 +19,13 @@
             </div>
             <table class="table table-bordered text-light text-center">
                 <thead>
-                    <th width="125" class="bg-dark">
+                    <th width="140" class="bg-dark">
                         Time
                     </th>
                     @foreach($time as $st)
-                    <th width="100" class="bg-secondary time ">
-                        {{$st->start_time}}
-                        <!-- {{$st->end_time}} -->
+                    <th width="140" class="bg-secondary time">
+                        {{$st->start_time}}-
+                        {{$st->end_time}}
                     </th>
                     @endforeach
                 </thead>

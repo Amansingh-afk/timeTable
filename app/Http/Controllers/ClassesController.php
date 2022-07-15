@@ -28,7 +28,9 @@ class ClassesController extends Controller
         ])
             ->orderBy("id", "desc")
             ->paginate(50);
+            
         $courses = DB::table('courses')->get();
+
         $courseDept = DB::table('courses')
             ->select('department')
             ->distinct()
