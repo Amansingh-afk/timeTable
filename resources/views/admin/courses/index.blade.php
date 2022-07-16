@@ -40,7 +40,7 @@
       </label>
       <input type="text" id="name" placeholder=" Name" name="name" required>
       <label for="course">
-        <strong>Course Code</strong>
+        <strong>Paper Code</strong>
       </label>
       <input type="text" id="course" placeholder=" Course Code" name="course" required>
       <div class="d-flex align-items-center">
